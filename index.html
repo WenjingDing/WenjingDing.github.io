@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,48 +10,48 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
+  <!-- ================= STYLES (MOSTLY UNCHANGED) ================= -->
   <style>
-    /* ===== your entire original CSS remains unchanged ===== */
+    /* your entire original CSS is unchanged */
     /* ... */
 
     /* ===== Language toggle (minimal add-on) ===== */
-    .lang-toggle {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.06);
+    .lang-toggle{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:6px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.06);
     }
     :root[data-theme="light"] .lang-toggle{
-      border-color: rgba(0,0,0,0.10);
-      background: rgba(0,0,0,0.04);
+      border-color: rgba(0,0,0,.10);
+      background: rgba(0,0,0,.04);
     }
     .lang-btn{
-      appearance: none;
-      border: 0;
-      background: transparent;
-      padding: 6px 10px;
-      border-radius: 999px;
-      cursor: pointer;
-      font: inherit;
-      line-height: 1;
-      opacity: 0.75;
-      user-select: none;
+      border:0;
+      background:transparent;
+      cursor:pointer;
+      padding:6px 10px;
+      border-radius:999px;
+      font:inherit;
+      line-height:1;
+      opacity:.75;
+      user-select:none;
     }
     .lang-btn[aria-pressed="true"]{
-      opacity: 1;
-      background: rgba(255,255,255,0.14);
+      opacity:1;
+      background:rgba(255,255,255,.14);
     }
     :root[data-theme="light"] .lang-btn[aria-pressed="true"]{
-      background: rgba(0,0,0,0.10);
+      background: rgba(0,0,0,.10);
     }
 
-    /* Hide non-active language */
-    [data-lang] { display: none; }
-    html[data-lang="en"] [data-lang="en"] { display: initial; }
-    html[data-lang="zh"] [data-lang="zh"] { display: initial; }
+    /* Hide/show by language */
+    [data-lang]{ display:none; }
+    html[data-lang="en"] [data-lang="en"]{ display: initial; }
+    html[data-lang="zh"] [data-lang="zh"]{ display: initial; }
   </style>
 </head>
 
@@ -64,7 +64,7 @@
     <nav class="nav">
       <div class="brand">
         <span class="brand-dot"></span>
-        <!-- ✅ Removed all “只开小火车” -->
+        <!-- ✅ Removed “只开小火车” -->
         <span class="brand-title">Wenjing Ding</span>
       </div>
 
@@ -81,10 +81,10 @@
         <a href="music.html">Music Page</a>
         <a href="archive.html">Archive</a>
 
-        <!-- ✅ Language tab -->
+        <!-- ✅ Language tab (minimal) -->
         <div class="lang-toggle" role="tablist" aria-label="Language">
-          <button class="lang-btn" id="langEN" type="button" role="tab" aria-selected="true" aria-pressed="true">EN</button>
-          <button class="lang-btn" id="langZH" type="button" role="tab" aria-selected="false" aria-pressed="false">中文</button>
+          <button class="lang-btn" id="langEN" type="button" aria-pressed="true">EN</button>
+          <button class="lang-btn" id="langZH" type="button" aria-pressed="false">中文</button>
         </div>
 
         <button class="theme-toggle" id="themeToggle" type="button">
@@ -110,7 +110,6 @@
           <div class="bio">
             <div class="bio-title">Bio</div>
             <div class="bio-text">
-              <!-- ✅ English / Chinese split -->
               <p class="muted" data-lang="en">Hi there, welcome to my web!</p>
               <p class="muted" data-lang="zh">你好，欢迎来到我的网站！</p>
             </div>
@@ -122,41 +121,41 @@
     <!-- ================= SECTIONS ================= -->
     <section id="notes" class="section reveal">
       <h3 data-lang="en">Notes</h3>
-      <h3 data-lang="zh">随想 · Notes</h3>
+      <h3 data-lang="zh">随想</h3>
     </section>
 
     <section id="essays" class="section reveal">
       <h3 data-lang="en">Essays</h3>
-      <h3 data-lang="zh">随笔 · Essays</h3>
+      <h3 data-lang="zh">随笔</h3>
     </section>
 
     <section id="music" class="section reveal">
       <h3 data-lang="en">Music</h3>
-      <h3 data-lang="zh">音乐 · Music</h3>
+      <h3 data-lang="zh">音乐</h3>
     </section>
 
     <section id="library" class="section reveal">
       <h3 data-lang="en">Library</h3>
-      <h3 data-lang="zh">收藏 · Library</h3>
+      <h3 data-lang="zh">收藏</h3>
     </section>
 
     <section id="now" class="section reveal">
       <h3 data-lang="en">Now</h3>
-      <h3 data-lang="zh">现在 · Now</h3>
+      <h3 data-lang="zh">现在</h3>
     </section>
 
     <section id="about" class="section reveal">
       <h3 data-lang="en">About</h3>
-      <h3 data-lang="zh">关于 · About</h3>
+      <h3 data-lang="zh">关于</h3>
     </section>
 
     <footer>
-      <span data-lang="en">© 2026 Wenjing Ding</span>
-      <span data-lang="zh">© 2026 Wenjing Ding</span>
+      © 2026 Wenjing Ding
     </footer>
 
   </div>
 
+  <!-- ================= SCRIPTS ================= -->
   <script>
     // ===== Theme: system default + manual toggle + persistence =====
     (function () {
@@ -206,46 +205,34 @@
       }
     })();
 
-    // ===== Language: EN / 中文 toggle + persistence =====
+    // ===== Language: EN / 中文 toggle + persistence (minimal) =====
     (function () {
       const LANG_KEY = "lang";
       const root = document.documentElement;
-
       const btnEN = document.getElementById("langEN");
       const btnZH = document.getElementById("langZH");
 
       function applyLang(lang) {
         root.setAttribute("data-lang", lang);
         root.setAttribute("lang", lang === "zh" ? "zh-CN" : "en");
-
-        if (btnEN && btnZH) {
-          const isEN = lang === "en";
-          btnEN.setAttribute("aria-selected", isEN ? "true" : "false");
-          btnEN.setAttribute("aria-pressed", isEN ? "true" : "false");
-          btnZH.setAttribute("aria-selected", isEN ? "false" : "true");
-          btnZH.setAttribute("aria-pressed", isEN ? "false" : "true");
-        }
+        if (btnEN) btnEN.setAttribute("aria-pressed", lang === "en" ? "true" : "false");
+        if (btnZH) btnZH.setAttribute("aria-pressed", lang === "zh" ? "true" : "false");
       }
 
       let stored = null;
       try { stored = localStorage.getItem(LANG_KEY); } catch (e) {}
 
-      // default: English
-      const initial = stored || "en";
-      applyLang(initial);
+      // default EN so Chinese won't show unless user chooses
+      applyLang(stored || "en");
 
-      if (btnEN) {
-        btnEN.addEventListener("click", () => {
-          try { localStorage.setItem(LANG_KEY, "en"); } catch (e) {}
-          applyLang("en");
-        });
-      }
-      if (btnZH) {
-        btnZH.addEventListener("click", () => {
-          try { localStorage.setItem(LANG_KEY, "zh"); } catch (e) {}
-          applyLang("zh");
-        });
-      }
+      if (btnEN) btnEN.addEventListener("click", () => {
+        try { localStorage.setItem(LANG_KEY, "en"); } catch (e) {}
+        applyLang("en");
+      });
+      if (btnZH) btnZH.addEventListener("click", () => {
+        try { localStorage.setItem(LANG_KEY, "zh"); } catch (e) {}
+        applyLang("zh");
+      });
     })();
 
     // ===== Smooth scroll (SAFE) =====
