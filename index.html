@@ -18,8 +18,8 @@
       --border: rgba(40,40,40,0.10);
       --shadow: 0 16px 44px rgba(15, 15, 15, 0.10);
       --shadow-soft: 0 10px 30px rgba(15, 15, 15, 0.08);
-      --accent: #2a6f5d; /* warm green */
-      --accent-2: #b07a48; /* warm brown */
+      --accent: #2a6f5d; 
+      --accent-2: #b07a48; 
       --radius: 18px;
       --radius-lg: 28px;
       --linkedin: #0A66C2;
@@ -29,7 +29,7 @@
 
     body{
       margin: 0;
-      font-family: "Inter", "PingFang SC", "Noto Sans SC", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-family: "Inter", "PingFang SC", "Noto Sans SC", system-ui, -apple-system, sans-serif;
       color: var(--text);
       background: var(--bg);
       line-height: 1.85;
@@ -55,8 +55,7 @@
       inset: -2px;
       z-index: -1;
       opacity: 0.45;
-      background-image:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none'%3E%3Ccircle cx='12' cy='18' r='1.2' fill='%232a6f5d' fill-opacity='0.16'/%3E%3Ccircle cx='64' cy='32' r='1.2' fill='%23b07a48' fill-opacity='0.14'/%3E%3Ccircle cx='94' cy='78' r='1.2' fill='%232a6f5d' fill-opacity='0.14'/%3E%3Ccircle cx='26' cy='92' r='1.2' fill='%23b07a48' fill-opacity='0.12'/%3E%3Ccircle cx='104' cy='14' r='1.2' fill='%232a6f5d' fill-opacity='0.10'/%3E%3C/g%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none'%3E%3Ccircle cx='12' cy='18' r='1.2' fill='%232a6f5d' fill-opacity='0.16'/%3E%3Ccircle cx='64' cy='32' r='1.2' fill='%23b07a48' fill-opacity='0.14'/%3E%3Ccircle cx='94' cy='78' r='1.2' fill='%232a6f5d' fill-opacity='0.14'/%3E%3Ccircle cx='26' cy='92' r='1.2' fill='%23b07a48' fill-opacity='0.12'/%3E%3Ccircle cx='104' cy='14' r='1.2' fill='%232a6f5d' fill-opacity='0.10'/%3E%3C/g%3E%3C/svg%3E");
       background-size: 160px 160px;
       pointer-events: none;
     }
@@ -115,9 +114,7 @@
     }
 
     .cover{ height: 100px; position: relative; }
-
     .hero-body{ padding: 0 28px 40px; }
-
     .profile{
       display: flex; flex-direction: column;
       align-items: center; text-align: center;
@@ -196,16 +193,16 @@
     .section-title h3{ margin: 0; font-size: 20px; font-weight: 600; }
     .hint{ font-size: 12px; color: var(--muted); }
 
-    /* Grid for Notes */
-    .grid{ display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-    .card{
+    /* Education Grid */
+    .edu-grid{ display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .edu-card{
       padding: 20px; border-radius: var(--radius);
-      border: 1px solid var(--border); background: rgba(255,255,255,0.5);
+      border: 1px solid var(--border); background: rgba(255,255,255,0.45);
     }
     .card-title{ font-size: 16px; font-weight: 600; margin-bottom: 4px; }
     .card-meta{ font-size: 12px; color: var(--muted); margin-bottom: 10px; }
 
-    /* Resume Specific Styling */
+    /* Resume Timeline Styling */
     .timeline { position: relative; padding-left: 20px; border-left: 2px solid var(--border); margin-left: 10px; }
     .resume-item { position: relative; margin-bottom: 24px; }
     .resume-dot {
@@ -228,7 +225,7 @@
 
     /* Mobile Tweaks */
     @media (max-width: 600px){
-      .grid { grid-template-columns: 1fr; }
+      .edu-grid { grid-template-columns: 1fr; }
       .name-line h1 { font-size: 30px; }
       .nav { padding: 10px 16px; }
       .section { padding: 20px; }
@@ -247,8 +244,8 @@
       </div>
       <div class="nav-links">
         <a href="#top">Home</a>
-        <a href="#notes">Notes</a>
         <a href="#resume">Resume</a>
+        <a href="#education">Education</a>
         <a href="#about">About</a>
       </div>
     </nav>
@@ -284,35 +281,16 @@
         </div>
 
         <div class="cta-row">
-          <a class="btn primary" href="#notes">Read Notes</a>
-          <a class="btn" href="#resume">View Resume</a>
+          <a class="btn primary" href="#resume">Experience</a>
+          <a class="btn" href="#education">Education</a>
         </div>
       </div>
     </header>
 
-    <section id="notes" class="section">
-      <div class="section-title">
-        <h3>Notes</h3>
-        <div class="hint">Nothing here yet, check later man.</div>
-      </div>
-      <div class="grid">
-        <article class="card">
-          <div class="card-title">First Note</div>
-          <div class="card-meta">2026 · Coming Soon</div>
-          <p>Writing in progress...</p>
-        </article>
-        <article class="card">
-          <div class="card-title">Untitled Thoughts</div>
-          <div class="card-meta">Template</div>
-          <p>Nothing here neither.</p>
-        </article>
-      </div>
-    </section>
-
     <section id="resume" class="section">
       <div class="section-title">
         <h3>Experience & Skills</h3>
-        <div class="hint">Professional timeline</div>
+        <div class="hint">Professional journey</div>
       </div>
 
       <div style="margin-bottom: 30px;">
@@ -321,7 +299,7 @@
           <span class="pill">Project Management</span>
           <span class="pill">Digital Strategy</span>
           <span class="pill">UI/UX Design</span>
-          <span class="pill">Cat Herding</span>
+          <span class="pill">Creative Writing</span>
         </div>
       </div>
 
@@ -329,19 +307,37 @@
         <div class="resume-item">
           <div class="resume-dot"></div>
           <div class="resume-content">
-            <div class="card-title">Your Role Title</div>
-            <div class="card-meta">Company Name · 2023 - Present</div>
-            <p>Describe your main impact and responsibilities here. Keep it concise and result-oriented.</p>
+            <div class="card-title">Job Title</div>
+            <div class="card-meta">Company · Year - Present</div>
+            <p>Summarize your responsibilities and the value you brought to the team.</p>
           </div>
         </div>
-
         <div class="resume-item">
           <div class="resume-dot"></div>
           <div class="resume-content">
-            <div class="card-title">Previous Position</div>
-            <div class="card-meta">Past Company · 2021 - 2023</div>
-            <p>Another highlight of your career. Mention a specific project or a skill you mastered during this time.</p>
+            <div class="card-title">Previous Role</div>
+            <div class="card-meta">Company · Year - Year</div>
+            <p>Highlight your key achievements and skills used during this role.</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education" class="section">
+      <div class="section-title">
+        <h3>Education</h3>
+        <div class="hint">Learning path</div>
+      </div>
+      <div class="edu-grid">
+        <div class="edu-card">
+          <div class="card-title">Master of Science</div>
+          <div class="card-meta">University Name · Class of 202X</div>
+          <p>Major in X. Focused on Y research.</p>
+        </div>
+        <div class="edu-card">
+          <div class="card-title">Bachelor of Arts</div>
+          <div class="card-meta">University Name · Class of 201X</div>
+          <p>Major in X. Minor in Y.</p>
         </div>
       </div>
     </section>
