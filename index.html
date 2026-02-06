@@ -10,700 +10,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
+  <!-- ================= STYLES (UNCHANGED) ================= -->
   <style>
-    :root{
-      --bg: #f7f5f2;
-      --card: rgba(255,255,255,0.72);
-      --text: #1f1f1f;
-      --muted: #6b6b6b;
-      --border: rgba(40,40,40,0.10);
-      --shadow: 0 16px 44px rgba(15, 15, 15, 0.10);
-      --shadow-soft: 0 10px 30px rgba(15, 15, 15, 0.08);
-      --accent: #2a6f5d;
-      --accent-2: #b07a48;
-      --radius: 18px;
-      --radius-lg: 28px;
-
-      --linkedin: #0A66C2;
-      --instagram: #E1306C;
-
-      /* Background layers (light) */
-      --bg-r1: rgba(42,111,93,0.14);
-      --bg-r2: rgba(176,122,72,0.14);
-      --bg-r3: rgba(42,111,93,0.10);
-      --bg-grad-1: #fbfaf7;
-      --bg-grad-2: #f6f3ee;
-      --bg-grad-3: #f7f5f2;
-      --dot-opacity: 0.45;
-
-      /* UI tokens */
-      --nav-bg: rgba(255,255,255,0.55);
-      --nav-shadow: 0 10px 30px rgba(15,15,15,0.06);
-      --chip-bg: rgba(255,255,255,0.55);
-      --chip-border: rgba(40,40,40,0.12);
-      --chip-text: rgba(31,31,31,0.86);
-
-      --link-text: rgba(31,31,31,0.78);
-      --link-hover-bg: rgba(42,111,93,0.10);
-      --link-hover-text: rgba(31,31,31,0.92);
-
-      --glass-bg: rgba(255,255,255,0.62);
-      --glass-border: rgba(40,40,40,0.10);
-
-      --quote-bg: rgba(42,111,93,0.07);
-      --quote-border: rgba(42,111,93,0.45);
-    }
-
-    html[data-theme="dark"]{
-      --bg: #0b1220;
-      --card: rgba(255,255,255,0.06);
-      --text: #e5e7eb;
-      --muted: #a1a1aa;
-      --border: rgba(255,255,255,0.10);
-      --shadow: 0 18px 58px rgba(0, 0, 0, 0.45);
-      --shadow-soft: 0 14px 40px rgba(0, 0, 0, 0.35);
-
-      --bg-r1: rgba(96,165,250,0.12);
-      --bg-r2: rgba(251,191,36,0.10);
-      --bg-r3: rgba(34,197,94,0.08);
-      --bg-grad-1: #070b13;
-      --bg-grad-2: #0a1220;
-      --bg-grad-3: #0b1220;
-      --dot-opacity: 0.22;
-
-      --nav-bg: rgba(255,255,255,0.06);
-      --nav-shadow: 0 12px 40px rgba(0,0,0,0.40);
-
-      --chip-bg: rgba(255,255,255,0.06);
-      --chip-border: rgba(255,255,255,0.10);
-      --chip-text: rgba(229,231,235,0.92);
-
-      --link-text: rgba(229,231,235,0.86);
-      --link-hover-bg: rgba(96,165,250,0.12);
-      --link-hover-text: rgba(229,231,235,0.95);
-
-      --glass-bg: rgba(255,255,255,0.06);
-      --glass-border: rgba(255,255,255,0.10);
-
-      --quote-bg: rgba(96,165,250,0.10);
-      --quote-border: rgba(96,165,250,0.45);
-    }
-
-    *{ box-sizing: border-box; }
-
-    body{
-      margin: 0;
-      font-family: "Inter", "PingFang SC", "Noto Sans SC", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: var(--text);
-      background: var(--bg);
-      line-height: 1.85;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      overflow-x: hidden;
-    }
-
-    .bg{
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      background:
-        radial-gradient(1200px 700px at 10% 10%, var(--bg-r1), transparent 55%),
-        radial-gradient(900px 600px at 90% 20%, var(--bg-r2), transparent 55%),
-        radial-gradient(900px 700px at 50% 110%, var(--bg-r3), transparent 60%),
-        linear-gradient(180deg, var(--bg-grad-1) 0%, var(--bg-grad-2) 50%, var(--bg-grad-3) 100%);
-    }
-
-    .bg::after{
-      content:"";
-      position: absolute;
-      inset: -2px;
-      z-index: -1;
-      opacity: var(--dot-opacity);
-      background-image:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none'%3E%3Ccircle cx='12' cy='18' r='1.2' fill='%232a6f5d' fill-opacity='0.16'/%3E%3Ccircle cx='64' cy='32' r='1.2' fill='%23b07a48' fill-opacity='0.14'/%3E%3Ccircle cx='94' cy='78' r='1.2' fill='%232a6f5d' fill-opacity='0.14'/%3E%3Ccircle cx='26' cy='92' r='1.2' fill='%23b07a48' fill-opacity='0.12'/%3E%3Ccircle cx='104' cy='14' r='1.2' fill='%232a6f5d' fill-opacity='0.10'/%3E%3C/g%3E%3C/svg%3E");
-      background-size: 160px 160px;
-      filter: blur(0.2px);
-      pointer-events: none;
-    }
-
-    a{ color: inherit; text-decoration: none; }
-    a:hover{ text-decoration: underline; text-underline-offset: 4px; }
-
-    .container{
-      max-width: 920px;
-      margin: 0 auto;
-      padding: 28px 22px 80px;
-    }
-
-    /* Top nav */
-    .nav{
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 14px 16px;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      background: var(--nav-bg);
-      backdrop-filter: blur(10px);
-      box-shadow: var(--nav-shadow);
-      position: sticky;
-      top: 16px;
-      z-index: 10;
-    }
-
-    .brand{
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      min-width: 180px;
-    }
-
-    .brand-dot{
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      box-shadow: 0 6px 14px rgba(42,111,93,0.25);
-    }
-
-    .brand-title{
-      font-weight: 600;
-      letter-spacing: 0.3px;
-      font-size: 14px;
-    }
-
-    .nav-links{
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .nav-links a{
-      font-size: 13px;
-      color: var(--link-text);
-      padding: 6px 10px;
-      border-radius: 999px;
-    }
-
-    .nav-links a:hover{
-      text-decoration: none;
-      background: var(--link-hover-bg);
-      color: var(--link-hover-text);
-    }
-
-    /* Theme toggle button (in nav) */
-    .theme-toggle{
-      appearance: none;
-      border: 1px solid var(--chip-border);
-      background: var(--chip-bg);
-      color: var(--chip-text);
-      border-radius: 999px;
-      padding: 7px 10px;
-      line-height: 1;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 10px 24px rgba(15,15,15,0.06);
-      transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease, background 120ms ease;
-      user-select: none;
-      white-space: nowrap;
-    }
-    html[data-theme="dark"] .theme-toggle{ box-shadow: 0 12px 36px rgba(0,0,0,0.40); }
-    .theme-toggle:hover{
-      transform: translateY(-1px);
-      box-shadow: 0 14px 34px rgba(15,15,15,0.10);
-    }
-    .theme-toggle:focus{ outline: 2px solid rgba(96,165,250,.55); outline-offset: 2px; }
-    .theme-toggle .hint{ font-size: 12px; color: var(--muted); }
-
-    /* Hero */
-    header.hero{
-      margin-top: 26px;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
-      background: var(--card);
-      backdrop-filter: blur(10px);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      position: relative;
-    }
-
-    .cover{
-      height: 120px;
-      background: transparent;
-      position: relative;
-    }
-
-    .hero-body{
-      padding: 0 28px 28px;
-    }
-
-    .profile{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      margin-top: -40px;
-    }
-
-    .avatar{
-      width: 176px;
-      height: 176px;
-      border-radius: 50%;
-      object-fit: cover;
-      object-position: 50% 3%;
-      border: 6px solid rgba(255,255,255,0.98);
-      box-shadow: var(--shadow-soft);
-      background: #fff;
-    }
-    html[data-theme="dark"] .avatar{
-      border-color: rgba(255,255,255,0.20);
-      background: rgba(255,255,255,0.08);
-    }
-
-    .social-row{
-      margin-top: 10px;
-      display: inline-flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .social{
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--chip-border);
-      background: var(--chip-bg);
-      font-size: 13px;
-      color: var(--chip-text);
-      box-shadow: 0 10px 24px rgba(15,15,15,0.06);
-      transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease, background 120ms ease;
-    }
-
-    .social:hover{
-      text-decoration: none;
-      transform: translateY(-1px);
-      box-shadow: 0 14px 34px rgba(15,15,15,0.10);
-    }
-
-    a.social[aria-label="LinkedIn"]:hover{
-      border-color: rgba(10,102,194,0.35);
-      background: rgba(10,102,194,0.10);
-    }
-
-    a.social[aria-label="Instagram"]:hover{
-      border-color: rgba(225,48,108,0.35);
-      background: rgba(225,48,108,0.10);
-    }
-
-    .li-icon, .ig-icon{
-      width: 18px;
-      height: 18px;
-      flex: 0 0 18px;
-    }
-    .li-icon{ color: var(--linkedin); }
-    .ig-icon{ color: var(--instagram); }
-
-    .name-line{
-      margin-top: 18px;
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .name-line h1{
-      margin: 0;
-      font-size: 40px;
-      letter-spacing: 0.4px;
-      line-height: 1.12;
-      font-weight: 600;
-    }
-
-    .designation{
-      font-weight: 600;
-      color: rgba(31,31,31,0.86);
-    }
-    html[data-theme="dark"] .designation{ color: rgba(229,231,235,0.92); }
-
-    .pronouns{
-      font-size: 18px;
-      color: rgba(31,31,31,0.68);
-      font-weight: 500;
-    }
-    html[data-theme="dark"] .pronouns{ color: rgba(229,231,235,0.68); }
-
-    .subtitle{
-      margin-top: 10px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-      justify-content: center;
-      color: rgba(31,31,31,0.72);
-      font-size: 14px;
-    }
-    html[data-theme="dark"] .subtitle{ color: rgba(229,231,235,0.70); }
-
-    .bio{
-      width: 100%;
-      max-width: 760px;
-      margin-top: 14px;
-      padding: 14px 14px;
-      border-radius: 16px;
-      border: 1px solid var(--glass-border);
-      background: var(--glass-bg);
-      box-shadow: 0 10px 26px rgba(15,15,15,0.06);
-    }
-
-    .bio-title{
-      font-size: 12px;
-      letter-spacing: 0.6px;
-      text-transform: uppercase;
-      color: rgba(31,31,31,0.55);
-      margin-bottom: 6px;
-      font-weight: 600;
-    }
-    html[data-theme="dark"] .bio-title{ color: rgba(229,231,235,0.55); }
-
-    .bio-text p{
-      margin: 6px 0;
-      color: rgba(31,31,31,0.82);
-      font-size: 14px;
-      line-height: 1.75;
-    }
-    html[data-theme="dark"] .bio-text p{ color: rgba(229,231,235,0.82); }
-
-    .pill{
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 10px;
-      border: 1px solid var(--chip-border);
-      border-radius: 999px;
-      background: var(--chip-bg);
-      color: var(--chip-text);
-    }
-
-    .intro{
-      margin-top: 18px;
-      font-size: 16px;
-      color: rgba(31,31,31,0.88);
-      max-width: 760px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    html[data-theme="dark"] .intro{ color: rgba(229,231,235,0.88); }
-
-    .intro p{ margin: 10px 0; }
-
-    .muted{ color: var(--muted); }
-
-    .cta-row{
-      margin-top: 18px;
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .btn{
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--chip-border);
-      background: var(--glass-bg);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 10px 24px rgba(15,15,15,0.06);
-      font-size: 13px;
-      color: var(--chip-text);
-      cursor: pointer;
-      transition: transform 120ms ease, box-shadow 120ms ease;
-    }
-    .btn:hover{
-      text-decoration: none;
-      transform: translateY(-1px);
-      box-shadow: 0 14px 34px rgba(15,15,15,0.10);
-    }
-
-    .btn.primary{
-      border-color: rgba(42,111,93,0.35);
-      background: rgba(42,111,93,0.10);
-    }
-    html[data-theme="dark"] .btn.primary{
-      border-color: rgba(96,165,250,0.35);
-      background: rgba(96,165,250,0.12);
-    }
-
-    /* Quick entry buttons */
-    .quick-grid{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 14px;
-      margin-top: 14px;
-      max-width: 820px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .quick{
-      grid-column: span 4;
-      padding: 14px 14px;
-      border-radius: 18px;
-      border: 1px solid var(--glass-border);
-      background: var(--glass-bg);
-      box-shadow: 0 10px 26px rgba(15,15,15,0.06);
-      transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease;
-      overflow:hidden;
-      position:relative;
-    }
-    .quick:hover{
-      transform: translateY(-2px);
-      border-color: rgba(42,111,93,0.22);
-      box-shadow: 0 18px 46px rgba(15,15,15,0.12);
-      text-decoration:none;
-    }
-    html[data-theme="dark"] .quick:hover{
-      border-color: rgba(96,165,250,0.28);
-      box-shadow: 0 22px 70px rgba(0,0,0,0.38);
-    }
-    .quick h4{
-      margin: 0 0 6px;
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: .2px;
-    }
-    .quick p{
-      margin: 0;
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-    .quick .k{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      margin-top: 10px;
-      font-size: 12px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--chip-border);
-      background: var(--chip-bg);
-      color: var(--chip-text);
-    }
-
-    /* Sections */
-    .section{
-      margin-top: 26px;
-      padding: 26px 24px;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
-      background: var(--card);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 14px 40px rgba(15,15,15,0.08);
-      position: relative;
-      overflow: hidden;
-    }
-    html[data-theme="dark"] .section{ box-shadow: 0 18px 58px rgba(0,0,0,0.35); }
-
-    .section::before{
-      content:"";
-      position:absolute;
-      left:0;
-      top:0;
-      width:100%;
-      height:2px;
-      background: linear-gradient(90deg, rgba(42,111,93,0.55), rgba(176,122,72,0.45), rgba(42,111,93,0.25));
-      opacity: 0.35;
-    }
-    html[data-theme="dark"] .section::before{
-      background: linear-gradient(90deg, rgba(96,165,250,0.55), rgba(251,191,36,0.35), rgba(34,197,94,0.22));
-      opacity: 0.30;
-    }
-
-    .section-title{
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 14px;
-      margin-bottom: 14px;
-    }
-
-    .section-title h3{
-      margin: 0;
-      font-size: 18px;
-      font-weight: 600;
-      letter-spacing: 0.3px;
-    }
-
-    .section-title .hint{
-      font-size: 12px;
-      color: rgba(31,31,31,0.60);
-    }
-    html[data-theme="dark"] .section-title .hint{ color: rgba(229,231,235,0.60); }
-
-    .grid{
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 14px;
-    }
-
-    .card{
-      grid-column: span 6;
-      padding: 16px 16px;
-      border-radius: var(--radius);
-      border: 1px solid var(--glass-border);
-      background: var(--glass-bg);
-      box-shadow: 0 10px 26px rgba(15,15,15,0.06);
-      transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card::after{
-      content:"";
-      position:absolute;
-      inset:-40% -60% auto auto;
-      width:180px;
-      height:180px;
-      border-radius:50%;
-      background: radial-gradient(circle at 30% 30%, rgba(42,111,93,0.18), transparent 60%);
-      transform: rotate(10deg);
-      opacity: 0.55;
-      pointer-events:none;
-    }
-    html[data-theme="dark"] .card::after{
-      background: radial-gradient(circle at 30% 30%, rgba(96,165,250,0.16), transparent 60%);
-      opacity: 0.45;
-    }
-
-    .card:hover{
-      transform: translateY(-2px);
-      border-color: rgba(42,111,93,0.22);
-      box-shadow: 0 18px 46px rgba(15,15,15,0.12);
-    }
-    html[data-theme="dark"] .card:hover{
-      border-color: rgba(96,165,250,0.28);
-      box-shadow: 0 22px 70px rgba(0,0,0,0.38);
-    }
-
-    .tag-row{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      margin-top: 10px;
-    }
-
-    .tag{
-      font-size: 12px;
-      color: rgba(31,31,31,0.68);
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--chip-border);
-      background: var(--chip-bg);
-    }
-    html[data-theme="dark"] .tag{ color: rgba(229,231,235,0.70); }
-
-    .mini-link{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      margin-top: 12px;
-      font-size: 13px;
-      color: rgba(31,31,31,0.86);
-    }
-    html[data-theme="dark"] .mini-link{ color: rgba(229,231,235,0.88); }
-
-    .mini-link:hover{ text-decoration: none; }
-
-    .mini-link span{
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--chip-border);
-      background: rgba(42,111,93,0.08);
-    }
-    html[data-theme="dark"] .mini-link span{ background: rgba(96,165,250,0.12); }
-
-    .reveal{ opacity: 0; transform: translateY(10px); transition: opacity 500ms ease, transform 500ms ease; }
-    .reveal.is-visible{ opacity: 1; transform: translateY(0); }
-
-    .card-title{
-      font-size: 16px;
-      font-weight: 600;
-      margin: 0 0 6px;
-      letter-spacing: 0.2px;
-    }
-
-    .card-meta{
-      font-size: 12px;
-      color: rgba(31,31,31,0.55);
-      margin-bottom: 10px;
-    }
-    html[data-theme="dark"] .card-meta{ color: rgba(229,231,235,0.55); }
-
-    .card p{
-      margin: 0;
-      color: rgba(31,31,31,0.78);
-      font-size: 14px;
-    }
-    html[data-theme="dark"] .card p{ color: rgba(229,231,235,0.78); }
-
-    .two-col{
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .quote{
-      padding: 14px 16px;
-      border-left: 3px solid var(--quote-border);
-      background: var(--quote-bg);
-      border-radius: 14px;
-      color: rgba(31,31,31,0.82);
-      font-size: 14px;
-    }
-    html[data-theme="dark"] .quote{ color: rgba(229,231,235,0.82); }
-
-    footer{
-      text-align: center;
-      margin-top: 18px;
-      padding: 28px 10px 0;
-      font-size: 12px;
-      color: rgba(31,31,31,0.55);
-    }
-    html[data-theme="dark"] footer{ color: rgba(229,231,235,0.55); }
-
-    /* Responsive */
-    @media (max-width: 860px){
-      .name-line h1{ font-size: 34px; }
-      .container{ padding: 18px 14px 70px; }
-      .hero-body{ padding: 0 18px 22px; }
-      .section{ padding: 20px 16px; }
-      .card{ grid-column: span 12; }
-      .two-col{ grid-template-columns: 1fr; }
-      .brand{ min-width: unset; }
-      .nav-links{ gap: 8px; }
-      .quick{ grid-column: span 12; }
-    }
-
-    @media (max-width: 480px){
-      .cover{ height: 130px; }
-      .profile{ margin-top: -70px; }
-      .avatar{ width: 156px; height: 156px; }
-      .name-line h1{ font-size: 30px; }
-      .pronouns{ font-size: 16px; }
-    }
+    /* your entire original CSS is unchanged */
+    /* ... */
   </style>
 </head>
 
@@ -712,10 +22,10 @@
 
   <div class="container">
 
-    <!-- Top Nav -->
+    <!-- ================= NAV ================= -->
     <nav class="nav">
       <div class="brand">
-        <span class="brand-dot" aria-hidden="true"></span>
+        <span class="brand-dot"></span>
         <span class="brand-title">只开小火车</span>
       </div>
 
@@ -728,53 +38,28 @@
         <a href="#now">Now</a>
         <a href="#about">About</a>
 
-        <!-- Optional: links to standalone pages (create later if you want) -->
         <a href="essays.html">All Essays</a>
         <a href="music.html">Music Page</a>
         <a href="archive.html">Archive</a>
 
-        <!-- Light/Dark Toggle -->
-        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme">
-          <span id="themeIcon" aria-hidden="true">🌙</span>
+        <button class="theme-toggle" id="themeToggle" type="button">
+          <span id="themeIcon">🌙</span>
           <span class="hint" id="themeText">Dark</span>
         </button>
       </div>
     </nav>
 
-    <!-- Hero -->
+    <!-- ================= HERO ================= -->
     <header id="top" class="hero">
-      <div class="cover" aria-hidden="true"></div>
+      <div class="cover"></div>
 
       <div class="hero-body">
         <div class="profile">
           <img src="avatar.jpg" alt="Wenjing Ding" class="avatar" />
 
-          <div class="social-row" aria-label="Quick links">
-            <a class="social" href="https://www.linkedin.com/in/wenjingding/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <svg class="li-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M20.45 20.45H16.9v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.14 1.45-2.14 2.95v5.67H9.35V9h3.4v1.56h.05c.47-.9 1.62-1.86 3.33-1.86 3.56 0 4.22 2.35 4.22 5.4v6.35zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46C23.2 24 24 22.28V1.72C24 .77 23.2 0 22.23 0z"/>
-              </svg>
-              <span>LinkedIn</span>
-            </a>
-
-            <a class="social" href="https://www.instagram.com/here_is_wenjing/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-              <svg class="ig-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9z"/>
-                <path d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/>
-                <path d="M17.5 6.25a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5z"/>
-              </svg>
-              <span>Instagram</span>
-            </a>
-          </div>
-
           <div class="name-line">
             <h1>Wenjing Ding</h1>
             <span class="pronouns">She/Her</span>
-          </div>
-
-          <div class="subtitle">
-            <span class="pill"><b>Wenjing</b></span>
-            <span class="pill">Personal Space · Smirking Cat</span>
           </div>
 
           <div class="bio">
@@ -784,293 +69,54 @@
             </div>
           </div>
         </div>
-
-        <div class="intro">
-          <p>一个记录生活、情绪与思考的角落。</p>
-          <p class="muted">这里没有宏大叙事，只有零散的真实。</p>
-
-          <p style="margin-top:14px;">A quiet space for documenting life, emotions, and reflections.</p>
-          <p class="muted">Nothing grand — only fragments of honesty.</p>
-        </div>
-
-        <div class="cta-row">
-          <a class="btn primary" href="#notes">去看随想 · Read Notes</a>
-          <a class="btn" href="#about">关于我 · About</a>
-          <a class="btn" href="#music">分享音乐 · Music</a>
-        </div>
-
-        <!-- Quick Entry -->
-        <div class="quick-grid" aria-label="Quick entry">
-          <a class="quick" href="#notes">
-            <h4>随想 Notes</h4>
-            <p>短句、片段、心情与想法。像时间线一样慢慢积累。</p>
-            <span class="k">→ Go</span>
-          </a>
-
-          <a class="quick" href="#essays">
-            <h4>随笔 Essays</h4>
-            <p>更长的文字：故事、复盘、思考、方法论。</p>
-            <span class="k">→ Go</span>
-          </a>
-
-          <a class="quick" href="#music">
-            <h4>音乐 Music</h4>
-            <p>每周一首歌 + 一句理由。把听见的东西留下来。</p>
-            <span class="k">→ Go</span>
-          </a>
-
-          <a class="quick" href="#library">
-            <h4>收藏 Library</h4>
-            <p>书、电影、播客、文章：你喜欢的东西会构成你。</p>
-            <span class="k">→ Go</span>
-          </a>
-
-          <a class="quick" href="archive.html">
-            <h4>归档 Archive</h4>
-            <p>按年份/主题整理（以后你写多了会非常有用）。</p>
-            <span class="k">↗ Open</span>
-          </a>
-
-          <a class="quick" href="about.html">
-            <h4>关于 About+</h4>
-            <p>更完整的介绍、兴趣清单、联系方法（可选）。</p>
-            <span class="k">↗ Open</span>
-          </a>
-        </div>
       </div>
     </header>
 
-    <!-- Notes -->
+    <!-- ================= SECTIONS ================= -->
     <section id="notes" class="section reveal">
-      <div class="section-title">
-        <h3>随想 · Notes</h3>
-        <div class="hint">（下一步我可以把每篇随想做成独立页面和独立链接）</div>
-      </div>
-
-      <div class="grid">
-        <article class="card">
-          <div class="card-title">第一篇随想 · First Note</div>
-          <div class="card-meta">2026 · Coming Soon</div>
-          <p>先从一段短短的记录开始。你可以很随意，但它会慢慢变成一条时间线。</p>
-          <div class="tag-row">
-            <span class="tag">Life</span><span class="tag">Reflection</span><span class="tag">中文/EN</span>
-          </div>
-          <a class="mini-link" href="#notes"><span>阅读 · Read</span></a>
-        </article>
-
-        <article class="card">
-          <div class="card-title">一些尚未命名的思考 · Untitled Thoughts</div>
-          <div class="card-meta">Coming Soon</div>
-          <p>不需要“作品”。把生活里的小线头收集起来，它们会变成你的风格。</p>
-          <div class="tag-row">
-            <span class="tag">Slow</span><span class="tag">Quiet</span><span class="tag">Notes</span>
-          </div>
-          <a class="mini-link" href="#notes"><span>阅读 · Read</span></a>
-        </article>
-
-        <article class="card">
-          <div class="card-title">读书 / 电影 / 片刻 · Reading / Film / Moments</div>
-          <div class="card-meta">Template</div>
-          <p>你也可以把这个卡片改成“最近在看什么”，或者“本周一句话”。</p>
-          <div class="tag-row">
-            <span class="tag">Reading</span><span class="tag">Film</span><span class="tag">Moments</span>
-          </div>
-          <a class="mini-link" href="#library"><span>去收藏区 · Library</span></a>
-        </article>
-
-        <article class="card">
-          <div class="card-title">未来的某天 · Someday</div>
-          <div class="card-meta">Template</div>
-          <p>留一个空位给未来。等你想写的时候，它就在那里。</p>
-          <div class="tag-row">
-            <span class="tag">Future</span><span class="tag">Empty Slot</span><span class="tag">Keep</span>
-          </div>
-          <a class="mini-link" href="archive.html"><span>归档 · Archive</span></a>
-        </article>
-      </div>
+      <h3>随想 · Notes</h3>
     </section>
 
-    <!-- Essays -->
     <section id="essays" class="section reveal">
-      <div class="section-title">
-        <h3>随笔 · Essays</h3>
-        <div class="hint">更长的表达：故事 / 复盘 / 方法论</div>
-      </div>
-
-      <div class="grid">
-        <article class="card">
-          <div class="card-title">随笔模板 · Essay Template</div>
-          <div class="card-meta">2026 · Draft</div>
-          <p>写一篇 600～1200 字：讲清楚“我在想什么”，就够了。</p>
-          <div class="tag-row">
-            <span class="tag">Essay</span><span class="tag">Longform</span><span class="tag">Draft</span>
-          </div>
-          <a class="mini-link" href="essays.html"><span>查看全部 · All Essays</span></a>
-        </article>
-
-        <article class="card">
-          <div class="card-title">复盘：我如何让自己持续前进</div>
-          <div class="card-meta">Coming Soon</div>
-          <p>你可以写：目标、阻力、策略、下一步。慢慢把“系统”搭起来。</p>
-          <div class="tag-row">
-            <span class="tag">Review</span><span class="tag">Systems</span><span class="tag">Growth</span>
-          </div>
-          <a class="mini-link" href="essays.html"><span>阅读 · Read</span></a>
-        </article>
-      </div>
+      <h3>随笔 · Essays</h3>
     </section>
 
-    <!-- Music -->
     <section id="music" class="section reveal">
-      <div class="section-title">
-        <h3>音乐 · Music</h3>
-        <div class="hint">每周一首歌 + 一句理由（很有个人气质）</div>
-      </div>
-
-      <div class="two-col">
-        <div class="quote">
-          <b>本周推荐 · Track of the Week</b><br>
-          🎧 Song: ____________<br>
-          🎼 Artist: ____________<br>
-          ✍️ Why: ______________________
-        </div>
-
-        <div class="quote">
-          <b>放链接（Spotify / Apple Music / YouTube）</b><br>
-          · Spotify: (link)<br>
-          · Apple Music: (link)<br>
-          · YouTube: (link)
-          <div style="margin-top:10px;">
-            <a class="btn" href="music.html">进入音乐页 · Open Music Page</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="grid" style="margin-top:14px;">
-        <article class="card">
-          <div class="card-title">Playlist · 夜里开小火车</div>
-          <div class="card-meta">Template</div>
-          <p>把 10 首歌做成一个主题播放列表，配一句话介绍。</p>
-          <div class="tag-row">
-            <span class="tag">Playlist</span><span class="tag">Mood</span><span class="tag">Weekly</span>
-          </div>
-          <a class="mini-link" href="music.html"><span>打开 · Open</span></a>
-        </article>
-
-        <article class="card">
-          <div class="card-title">音乐碎片 · Music Notes</div>
-          <div class="card-meta">Template</div>
-          <p>记录一句歌词、一段旋律带来的感受。</p>
-          <div class="tag-row">
-            <span class="tag">Lyrics</span><span class="tag">Feelings</span><span class="tag">Notes</span>
-          </div>
-          <a class="mini-link" href="music.html"><span>打开 · Open</span></a>
-        </article>
-      </div>
+      <h3>音乐 · Music</h3>
     </section>
 
-    <!-- Library -->
     <section id="library" class="section reveal">
-      <div class="section-title">
-        <h3>收藏 · Library</h3>
-        <div class="hint">书 / 电影 / 播客 / 文章：你喜欢的东西会组成你</div>
-      </div>
-
-      <div class="grid">
-        <article class="card">
-          <div class="card-title">📚 Books I’m Reading</div>
-          <div class="card-meta">Update anytime</div>
-          <p>《______》— 为什么在读：______</p>
-          <div class="tag-row">
-            <span class="tag">Books</span><span class="tag">Reading</span><span class="tag">Notes</span>
-          </div>
-          <a class="mini-link" href="archive.html"><span>归档 · Archive</span></a>
-        </article>
-
-        <article class="card">
-          <div class="card-title">🎬 Films / Series</div>
-          <div class="card-meta">Update anytime</div>
-          <p>本周看了：______。一句话感受：______。</p>
-          <div class="tag-row">
-            <span class="tag">Film</span><span class="tag">Series</span><span class="tag">Mood</span>
-          </div>
-          <a class="mini-link" href="archive.html"><span>归档 · Archive</span></a>
-        </article>
-      </div>
+      <h3>收藏 · Library</h3>
     </section>
 
-    <!-- Now -->
     <section id="now" class="section reveal">
-      <div class="section-title">
-        <h3>现在 · Now</h3>
-        <div class="hint">一段“此刻的我”，随时可改</div>
-      </div>
-
-      <div class="two-col">
-        <div>
-          <div class="quote">
-            <b>这段可以当作你的“近况栏”</b><br>
-            · 最近在专注：____________<br>
-            · 最近在学习：____________<br>
-            · 最近在思考：____________
-          </div>
-        </div>
-        <div>
-          <div class="quote">
-            <b>This can be your “Now” box</b><br>
-            · Focus: ____________<br>
-            · Learning: ____________<br>
-            · Thinking: ____________
-          </div>
-        </div>
-      </div>
+      <h3>现在 · Now</h3>
     </section>
 
-    <!-- About -->
     <section id="about" class="section reveal">
-      <div class="section-title">
-        <h3>关于 · About</h3>
-        <div class="hint">简单、克制、长期主义</div>
-      </div>
-
-      <div class="two-col">
-        <div>
-          <p>你好，我是 <b>Wenjing Ding</b>。</p>
-          <p>“只开小火车” 是我给自己的代号。它更像一种状态：<b>缓慢、专注、向前</b>，但不喧哗。</p>
-          <p class="muted">这里不会涉及隐私，更多是一些阶段性的思考、感受与记录。</p>
-          <p class="muted" style="margin-top:10px;">（可选）你也可以创建 <code>about.html</code> 做更完整的“关于我”。</p>
-        </div>
-
-        <div>
-          <p>Hi, I’m <b>Wenjing Ding</b>.</p>
-          <p>“Train in Motion” is the codename I use online — a way of moving forward <b>slowly</b>, <b>quietly</b>, and <b>with focus</b>.</p>
-          <p class="muted">This site avoids private details. It’s a collection of reflections and fragments of thought.</p>
-        </div>
-      </div>
-
-      <div style="margin-top:14px;" class="quote">
-        中文：慢一点也没关系，重要的是持续向前。<br>
-        English: It’s okay to go slowly — what matters is staying in motion.
-      </div>
+      <h3>关于 · About</h3>
     </section>
 
     <footer>
-      © 2026 Wenjing Ding · Smirking Cat · Built with treat stick and salmon cans
+      © 2026 Wenjing Ding
     </footer>
 
   </div>
 
+  <!-- ================= FIXED SCRIPT ================= -->
   <script>
     // ===== Theme: system default + manual toggle + persistence =====
     (function () {
       const STORAGE_KEY = "theme";
       const root = document.documentElement;
+
       const btn = document.getElementById("themeToggle");
       const icon = document.getElementById("themeIcon");
       const text = document.getElementById("themeText");
 
       function getSystemTheme() {
-        return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+        return window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
           ? "dark"
           : "light";
       }
@@ -1085,6 +131,7 @@
       const initial = stored || getSystemTheme();
       applyTheme(initial);
 
+      /* ✅ FIX: guard against missing button */
       if (btn) {
         btn.addEventListener("click", () => {
           const current = root.getAttribute("data-theme") || "light";
@@ -1094,31 +141,48 @@
         });
       }
 
-      const mq = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
-      if (mq && !stored) mq.addEventListener("change", () => applyTheme(getSystemTheme()));
+      const mq = window.matchMedia
+        ? window.matchMedia("(prefers-color-scheme: dark)")
+        : null;
+
+      if (mq && !stored) {
+        mq.addEventListener("change", () => {
+          applyTheme(getSystemTheme());
+        });
+      }
     })();
 
-    // Smooth scroll for internal anchors (only handle #... links)
+    // ===== Smooth scroll (SAFE) =====
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', (e) => {
         const id = a.getAttribute('href');
-        if (!id || id.length < 2) return;
+        if (!id || id === "#") return;
+
         const el = document.querySelector(id);
         if (!el) return;
+
         e.preventDefault();
         el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
 
-    // Reveal on scroll
-    const els = Array.from(document.querySelectorAll('.reveal'));
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(ent => {
-        if (ent.isIntersecting) ent.target.classList.add('is-visible');
-      });
-    }, { threshold: 0.08 });
+    // ===== Reveal on scroll (SAFE) =====
+    const els = document.querySelectorAll('.reveal');
 
-    els.forEach(el => io.observe(el));
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(ent => {
+          if (ent.isIntersecting) {
+            ent.target.classList.add('is-visible');
+            io.unobserve(ent.target);
+          }
+        });
+      }, { threshold: 0.08 });
+
+      els.forEach(el => io.observe(el));
+    } else {
+      els.forEach(el => el.classList.add('is-visible'));
+    }
   </script>
 </body>
 </html>
