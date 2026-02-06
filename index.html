@@ -4,17 +4,438 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wenjing Ding</title>
+  <title>Wenjing Ding · 小咪得志</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <!-- ================= STYLES (UNCHANGED) ================= -->
   <style>
-    /* your entire original CSS is unchanged */
-    /* ... */
+    :root{
+      --bg: #f7f5f2;
+      --card: rgba(255,255,255,0.72);
+      --text: #1f1f1f;
+      --muted: #6b6b6b;
+      --border: rgba(40,40,40,0.10);
+      --shadow: 0 16px 44px rgba(15, 15, 15, 0.10);
+      --shadow-soft: 0 10px 30px rgba(15, 15, 15, 0.08);
+      --accent: #2a6f5d; /* warm green */
+      --accent-2: #b07a48; /* warm brown */
+      --radius: 18px;
+      --radius-lg: 28px;
+
+      /* LinkedIn-like header colors */
+      --cover: #6b1432;       /* deep wine */
+      --cover-stripe: #f2b600;/* warm yellow */
+      --linkedin: #0A66C2;
+    }
+
+    *{ box-sizing: border-box; }
+
+    body{
+      margin: 0;
+      font-family: "Inter", "PingFang SC", "Noto Sans SC", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.85;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* --- Background: warm gradient + subtle pattern (no external image needed) --- */
+    .bg{
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(1200px 700px at 10% 10%, rgba(42,111,93,0.14), transparent 55%),
+        radial-gradient(900px 600px at 90% 20%, rgba(176,122,72,0.14), transparent 55%),
+        radial-gradient(900px 700px at 50% 110%, rgba(42,111,93,0.10), transparent 60%),
+        linear-gradient(180deg, #fbfaf7 0%, #f6f3ee 50%, #f7f5f2 100%);
+    }
+
+    /* SVG dot pattern overlay */
+    .bg::after{
+      content:"";
+      position: absolute;
+      inset: -2px;
+      z-index: -1;
+      opacity: 0.45;
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none'%3E%3Ccircle cx='12' cy='18' r='1.2' fill='%232a6f5d' fill-opacity='0.16'/%3E%3Ccircle cx='64' cy='32' r='1.2' fill='%23b07a48' fill-opacity='0.14'/%3E%3Ccircle cx='94' cy='78' r='1.2' fill='%232a6f5d' fill-opacity='0.14'/%3E%3Ccircle cx='26' cy='92' r='1.2' fill='%23b07a48' fill-opacity='0.12'/%3E%3Ccircle cx='104' cy='14' r='1.2' fill='%232a6f5d' fill-opacity='0.10'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: 160px 160px;
+      filter: blur(0.2px);
+      pointer-events: none;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    a:hover{ text-decoration: underline; text-underline-offset: 4px; }
+
+    .container{
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 28px 22px 80px;
+    }
+
+    /* Top nav */
+    .nav{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(15,15,15,0.06);
+      position: sticky;
+      top: 16px;
+      z-index: 10;
+    }
+
+    .brand{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 180px;
+    }
+
+    .brand-dot{
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 6px 14px rgba(42,111,93,0.25);
+    }
+
+    .brand-title{
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      font-size: 14px;
+    }
+
+    .nav-links{
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a{
+      font-size: 13px;
+      color: rgba(31,31,31,0.78);
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+
+    .nav-links a:hover{
+      text-decoration: none;
+      background: rgba(42,111,93,0.10);
+      color: rgba(31,31,31,0.92);
+    }
+
+    /* Hero (LinkedIn-like cover + overlapping avatar) */
+    header.hero{
+      margin-top: 26px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: var(--card);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .cover{
+      height: 120px; /* smaller, neutral header */
+      background: transparent; /* remove LinkedIn-style color block */
+      position: relative;
+    }
+
+    .cover::after{
+      display: none; /* remove yellow stripe */
+    }
+
+    .hero-body{
+      padding: 0 28px 28px;
+    }
+
+    .profile{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-top: -40px; /* reduce overlap so head is fully visible */ /* overlap cover */
+    }
+
+    .avatar{
+      width: 176px;
+      height: 176px;
+      border-radius: 50%;
+      object-fit: cover;
+      /* Fix head cropping: move the crop focus upward (LinkedIn-like) */
+      object-position: 50% 8%; /* move crop higher so full head shows */
+      border: 6px solid rgba(255,255,255,0.98);
+      box-shadow: var(--shadow-soft);
+      background: #fff;
+    }
+
+    .social{
+      margin-top: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(40,40,40,0.12);
+      background: rgba(255,255,255,0.66);
+      font-size: 13px;
+      color: rgba(31,31,31,0.86);
+      box-shadow: 0 10px 24px rgba(15,15,15,0.06);
+    }
+
+    .social:hover{
+      text-decoration: none;
+      border-color: rgba(10,102,194,0.35);
+      background: rgba(10,102,194,0.08);
+    }
+
+    .li-icon{
+      width: 18px;
+      height: 18px;
+      flex: 0 0 18px;
+      color: var(--linkedin);
+    }
+
+    .name-line{
+      margin-top: 18px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .name-line h1{
+      margin: 0;
+      font-size: 40px;
+      letter-spacing: 0.4px;
+      line-height: 1.12;
+      font-weight: 600;
+    }
+
+    .designation{
+      font-weight: 600;
+      color: rgba(31,31,31,0.86);
+    }
+
+    .badge{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      border: 1px solid rgba(31,31,31,0.18);
+      background: rgba(255,255,255,0.55);
+    }
+
+    .badge svg{ width: 16px; height: 16px; color: rgba(31,31,31,0.72); }
+
+    .pronouns{
+      font-size: 18px;
+      color: rgba(31,31,31,0.68);
+      font-weight: 500;
+    }
+
+    .subtitle{
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      color: rgba(31,31,31,0.72);
+      font-size: 14px;
+    }
+
+    .pill{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border: 1px solid rgba(40,40,40,0.12);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.55);
+    }
+
+    .pill b{ font-weight: 600; color: rgba(31,31,31,0.86); }
+
+    .intro{
+      margin-top: 18px;
+      font-size: 16px;
+      color: rgba(31,31,31,0.88);
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .intro p{ margin: 10px 0; }
+
+    .muted{ color: var(--muted); }
+
+    .cta-row{
+      margin-top: 18px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(40,40,40,0.14);
+      background: rgba(255,255,255,0.62);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 24px rgba(15,15,15,0.06);
+      font-size: 13px;
+      color: rgba(31,31,31,0.86);
+      cursor: pointer;
+      transition: transform 120ms ease, box-shadow 120ms ease;
+    }
+    .btn:hover{
+      text-decoration: none;
+      transform: translateY(-1px);
+      box-shadow: 0 14px 34px rgba(15,15,15,0.10);
+    }
+
+    .btn.primary{
+      border-color: rgba(42,111,93,0.35);
+      background: rgba(42,111,93,0.10);
+    }
+
+    /* Sections */
+    .section{
+      margin-top: 26px;
+      padding: 26px 24px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: var(--card);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 14px 40px rgba(15,15,15,0.08);
+    }
+
+    .section-title{
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .section-title h3{
+      margin: 0;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    .section-title .hint{
+      font-size: 12px;
+      color: rgba(31,31,31,0.60);
+    }
+
+    .grid{
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+
+    .card{
+      grid-column: span 6;
+      padding: 16px 16px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(40,40,40,0.10);
+      background: rgba(255,255,255,0.62);
+      box-shadow: 0 10px 26px rgba(15,15,15,0.06);
+      transition: transform 120ms ease, box-shadow 120ms ease;
+    }
+
+    .card:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 14px 34px rgba(15,15,15,0.10);
+    }
+
+    .card-title{
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0 0 6px;
+      letter-spacing: 0.2px;
+    }
+
+    .card-meta{
+      font-size: 12px;
+      color: rgba(31,31,31,0.55);
+      margin-bottom: 10px;
+    }
+
+    .card p{
+      margin: 0;
+      color: rgba(31,31,31,0.78);
+      font-size: 14px;
+    }
+
+    .two-col{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .quote{
+      padding: 14px 16px;
+      border-left: 3px solid rgba(42,111,93,0.45);
+      background: rgba(42,111,93,0.07);
+      border-radius: 14px;
+      color: rgba(31,31,31,0.82);
+      font-size: 14px;
+    }
+
+    footer{
+      text-align: center;
+      margin-top: 18px;
+      padding: 28px 10px 0;
+      font-size: 12px;
+      color: rgba(31,31,31,0.55);
+    }
+
+    /* Responsive */
+    @media (max-width: 860px){
+      .name-line h1{ font-size: 34px; }
+      .container{ padding: 18px 14px 70px; }
+      .hero-body{ padding: 0 18px 22px; }
+      .section{ padding: 20px 16px; }
+      .card{ grid-column: span 12; }
+      .two-col{ grid-template-columns: 1fr; }
+      .brand{ min-width: unset; }
+      .nav-links{ gap: 8px; }
+    }
+
+    @media (max-width: 480px){
+      .cover{ height: 130px; }
+      .profile{ margin-top: -70px; }
+      .avatar{ width: 156px; height: 156px; }
+      .name-line h1{ font-size: 30px; }
+      .pronouns{ font-size: 16px; }
+    }
   </style>
 </head>
 
@@ -23,167 +444,136 @@
 
   <div class="container">
 
-    <!-- ================= NAV ================= -->
+    <!-- Top Nav -->
     <nav class="nav">
       <div class="brand">
-        <span class="brand-dot"></span>
-        <span class="brand-title">只开小火车</span>
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span class="brand-title">小咪得志</span>
       </div>
-
       <div class="nav-links">
         <a href="#top">Home</a>
         <a href="#notes">Notes</a>
-        <a href="#essays">Essays</a>
-        <a href="#music">Music</a>
-        <a href="#library">Library</a>
-        <a href="#now">Now</a>
         <a href="#about">About</a>
-
-        <a href="essays.html">All Essays</a>
-        <a href="music.html">Music Page</a>
-        <a href="archive.html">Archive</a>
-
-        <button class="theme-toggle" id="themeToggle" type="button">
-          <span id="themeIcon">🌙</span>
-          <span class="hint" id="themeText">Dark</span>
-        </button>
       </div>
     </nav>
 
-    <!-- ================= HERO ================= -->
+    <!-- Hero -->
     <header id="top" class="hero">
-      <div class="cover"></div>
+      <div class="cover" aria-hidden="true"></div>
 
       <div class="hero-body">
         <div class="profile">
+          <!-- Avatar: keep only on homepage -->
           <img src="avatar.jpg" alt="Wenjing Ding" class="avatar" />
 
+          <!-- LinkedIn under headshot -->
+          <a class="social" href="https://www.linkedin.com/in/wenjingding/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg class="li-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M20.45 20.45H16.9v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.14 1.45-2.14 2.95v5.67H9.35V9h3.4v1.56h.05c.47-.9 1.62-1.86 3.33-1.86 3.56 0 4.22 2.35 4.22 5.4v6.35zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46C23.2 24 24 23.23 24 22.28V1.72C24 .77 23.2 0 22.23 0z"/>
+            </svg>
+            <span>LinkedIn</span>
+          </a>
+
+          <!-- Name line like LinkedIn (name + designation + badge + pronouns) -->
           <div class="name-line">
-            <h1>Wenjing Ding</h1>
-            <span class="pronouns">She/Her</span>
+            <h1>Wenjing Ding, <span class="designation">FRM</span></h1>
+            <span class="badge" title="Designation">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 2l8 4v6c0 5-3.5 9.4-8 10-4.5-.6-8-5-8-10V6l8-4z"/>
+                <path d="M9 12l2 2 4-5"/>
+              </svg>
+            </span>
+            <span class="pronouns">He/Him</span>
           </div>
 
-          <div class="bio">
-            <div class="bio-title">Bio</div>
-            <div class="bio-text">
-              <p class="muted">Hi there, welcome to my web!</p>
-            </div>
+          <div class="subtitle">
+            <span class="pill"><b>小咪得志</b></span>
+            <span class="pill">Personal Space · Train in Motion</span>
           </div>
+        </div>
+
+        <div class="intro">
+          <p>一个记录生活、情绪与思考的角落。</p>
+          <p class="muted">这里没有宏大叙事，只有零散的真实。</p>
+
+          <p style="margin-top:14px;">A quiet space for documenting life, emotions, and reflections.</p>
+          <p class="muted">Nothing grand — only fragments of honesty.</p>
+        </div>
+
+        <div class="cta-row">
+          <a class="btn primary" href="#notes">去看随想 · Read Notes</a>
+          <a class="btn" href="#about">关于我 · About</a>
         </div>
       </div>
     </header>
 
-    <!-- ================= SECTIONS ================= -->
-    <section id="notes" class="section reveal">
-      <h3>随想 · Notes</h3>
+
+    <!-- Notes -->
+    <section id="notes" class="section">
+      <div class="section-title">
+        <h3>随想 · Notes</h3>
+        <div class="hint">（后面你发我内容，我帮你把这里换成真实文章）</div>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-title">第一篇随想 · First Note</div>
+          <div class="card-meta">2026 · Coming Soon</div>
+          <p>先从一段短短的记录开始。你可以很随意，但它会慢慢变成一条时间线。</p>
+        </article>
+
+        <article class="card">
+          <div class="card-title">一些尚未命名的思考 · Untitled Thoughts</div>
+          <div class="card-meta">Coming Soon</div>
+          <p>不需要“作品”。把生活里的小线头收集起来，它们会变成你的风格。</p>
+        </article>
+
+        <article class="card">
+          <div class="card-title">读书 / 电影 / 片刻 · Reading / Film / Moments</div>
+          <div class="card-meta">Template</div>
+          <p>你也可以把这个卡片改成“最近在看什么”，或者“本周一句话”。</p>
+        </article>
+
+        <article class="card">
+          <div class="card-title">未来的某天 · Someday</div>
+          <div class="card-meta">Template</div>
+          <p>留一个空位给未来。等你想写的时候，它就在那里。</p>
+        </article>
+      </div>
     </section>
 
-    <section id="essays" class="section reveal">
-      <h3>随笔 · Essays</h3>
-    </section>
 
-    <section id="music" class="section reveal">
-      <h3>音乐 · Music</h3>
-    </section>
+    <!-- About -->
+    <section id="about" class="section">
+      <div class="section-title">
+        <h3>关于 · About</h3>
+        <div class="hint">简单、克制、长期主义</div>
+      </div>
 
-    <section id="library" class="section reveal">
-      <h3>收藏 · Library</h3>
-    </section>
+      <div class="two-col">
+        <div>
+          <p>你好，我是 <b>Wenjing Ding</b>。</p>
+          <p>“小咪得志” 是我给自己的代号。它更像一种状态：<b>缓慢、专注、向前</b>，但不喧哗。</p>
+          <p class="muted">这里不会涉及隐私，更多是一些阶段性的思考、感受与记录。</p>
+        </div>
 
-    <section id="now" class="section reveal">
-      <h3>现在 · Now</h3>
-    </section>
+        <div>
+          <p>Hi, I’m <b>Wenjing Ding</b>.</p>
+          <p>“Train in Motion” is the codename I use online — a way of moving forward <b>slowly</b>, <b>quietly</b>, and <b>with focus</b>.</p>
+          <p class="muted">This site avoids private details. It’s a collection of reflections and fragments of thought.</p>
+        </div>
+      </div>
 
-    <section id="about" class="section reveal">
-      <h3>关于 · About</h3>
+      <div style="margin-top:14px;" class="quote">
+        中文：慢一点也没关系，重要的是持续向前。<br>
+        English: It’s okay to go slowly — what matters is staying in motion.
+      </div>
     </section>
 
     <footer>
-      © 2026 Wenjing Ding
+      © 2026 Wenjing Ding · Train in Motion · Built with calm and patience
     </footer>
 
   </div>
-
-  <!-- ================= FIXED SCRIPT ================= -->
-  <script>
-    // ===== Theme: system default + manual toggle + persistence =====
-    (function () {
-      const STORAGE_KEY = "theme";
-      const root = document.documentElement;
-
-      const btn = document.getElementById("themeToggle");
-      const icon = document.getElementById("themeIcon");
-      const text = document.getElementById("themeText");
-
-      function getSystemTheme() {
-        return window.matchMedia &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "dark"
-          : "light";
-      }
-
-      function applyTheme(theme) {
-        root.setAttribute("data-theme", theme);
-        if (icon) icon.textContent = theme === "dark" ? "☀️" : "🌙";
-        if (text) text.textContent = theme === "dark" ? "Light" : "Dark";
-      }
-
-      const stored = localStorage.getItem(STORAGE_KEY);
-      const initial = stored || getSystemTheme();
-      applyTheme(initial);
-
-      /* ✅ FIX: guard against missing button */
-      if (btn) {
-        btn.addEventListener("click", () => {
-          const current = root.getAttribute("data-theme") || "light";
-          const next = current === "dark" ? "light" : "dark";
-          localStorage.setItem(STORAGE_KEY, next);
-          applyTheme(next);
-        });
-      }
-
-      const mq = window.matchMedia
-        ? window.matchMedia("(prefers-color-scheme: dark)")
-        : null;
-
-      if (mq && !stored) {
-        mq.addEventListener("change", () => {
-          applyTheme(getSystemTheme());
-        });
-      }
-    })();
-
-    // ===== Smooth scroll (SAFE) =====
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', (e) => {
-        const id = a.getAttribute('href');
-        if (!id || id === "#") return;
-
-        const el = document.querySelector(id);
-        if (!el) return;
-
-        e.preventDefault();
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    });
-
-    // ===== Reveal on scroll (SAFE) =====
-    const els = document.querySelectorAll('.reveal');
-
-    if ('IntersectionObserver' in window) {
-      const io = new IntersectionObserver(entries => {
-        entries.forEach(ent => {
-          if (ent.isIntersecting) {
-            ent.target.classList.add('is-visible');
-            io.unobserve(ent.target);
-          }
-        });
-      }, { threshold: 0.08 });
-
-      els.forEach(el => io.observe(el));
-    } else {
-      els.forEach(el => el.classList.add('is-visible'));
-    }
-  </script>
 </body>
 </html>
