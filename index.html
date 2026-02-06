@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,10 +10,48 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <!-- ================= STYLES (UNCHANGED) ================= -->
   <style>
-    /* your entire original CSS is unchanged */
+    /* ===== your entire original CSS remains unchanged ===== */
     /* ... */
+
+    /* ===== Language toggle (minimal add-on) ===== */
+    .lang-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+    }
+    :root[data-theme="light"] .lang-toggle{
+      border-color: rgba(0,0,0,0.10);
+      background: rgba(0,0,0,0.04);
+    }
+    .lang-btn{
+      appearance: none;
+      border: 0;
+      background: transparent;
+      padding: 6px 10px;
+      border-radius: 999px;
+      cursor: pointer;
+      font: inherit;
+      line-height: 1;
+      opacity: 0.75;
+      user-select: none;
+    }
+    .lang-btn[aria-pressed="true"]{
+      opacity: 1;
+      background: rgba(255,255,255,0.14);
+    }
+    :root[data-theme="light"] .lang-btn[aria-pressed="true"]{
+      background: rgba(0,0,0,0.10);
+    }
+
+    /* Hide non-active language */
+    [data-lang] { display: none; }
+    html[data-lang="en"] [data-lang="en"] { display: initial; }
+    html[data-lang="zh"] [data-lang="zh"] { display: initial; }
   </style>
 </head>
 
@@ -26,7 +64,8 @@
     <nav class="nav">
       <div class="brand">
         <span class="brand-dot"></span>
-        <span class="brand-title">只开小火车</span>
+        <!-- ✅ Removed all “只开小火车” -->
+        <span class="brand-title">Wenjing Ding</span>
       </div>
 
       <div class="nav-links">
@@ -41,6 +80,12 @@
         <a href="essays.html">All Essays</a>
         <a href="music.html">Music Page</a>
         <a href="archive.html">Archive</a>
+
+        <!-- ✅ Language tab -->
+        <div class="lang-toggle" role="tablist" aria-label="Language">
+          <button class="lang-btn" id="langEN" type="button" role="tab" aria-selected="true" aria-pressed="true">EN</button>
+          <button class="lang-btn" id="langZH" type="button" role="tab" aria-selected="false" aria-pressed="false">中文</button>
+        </div>
 
         <button class="theme-toggle" id="themeToggle" type="button">
           <span id="themeIcon">🌙</span>
@@ -65,7 +110,9 @@
           <div class="bio">
             <div class="bio-title">Bio</div>
             <div class="bio-text">
-              <p class="muted">Hi there, welcome to my web!</p>
+              <!-- ✅ English / Chinese split -->
+              <p class="muted" data-lang="en">Hi there, welcome to my web!</p>
+              <p class="muted" data-lang="zh">你好，欢迎来到我的网站！</p>
             </div>
           </div>
         </div>
@@ -74,36 +121,42 @@
 
     <!-- ================= SECTIONS ================= -->
     <section id="notes" class="section reveal">
-      <h3>随想 · Notes</h3>
+      <h3 data-lang="en">Notes</h3>
+      <h3 data-lang="zh">随想 · Notes</h3>
     </section>
 
     <section id="essays" class="section reveal">
-      <h3>随笔 · Essays</h3>
+      <h3 data-lang="en">Essays</h3>
+      <h3 data-lang="zh">随笔 · Essays</h3>
     </section>
 
     <section id="music" class="section reveal">
-      <h3>音乐 · Music</h3>
+      <h3 data-lang="en">Music</h3>
+      <h3 data-lang="zh">音乐 · Music</h3>
     </section>
 
     <section id="library" class="section reveal">
-      <h3>收藏 · Library</h3>
+      <h3 data-lang="en">Library</h3>
+      <h3 data-lang="zh">收藏 · Library</h3>
     </section>
 
     <section id="now" class="section reveal">
-      <h3>现在 · Now</h3>
+      <h3 data-lang="en">Now</h3>
+      <h3 data-lang="zh">现在 · Now</h3>
     </section>
 
     <section id="about" class="section reveal">
-      <h3>关于 · About</h3>
+      <h3 data-lang="en">About</h3>
+      <h3 data-lang="zh">关于 · About</h3>
     </section>
 
     <footer>
-      © 2026 Wenjing Ding
+      <span data-lang="en">© 2026 Wenjing Ding</span>
+      <span data-lang="zh">© 2026 Wenjing Ding</span>
     </footer>
 
   </div>
 
-  <!-- ================= FIXED SCRIPT ================= -->
   <script>
     // ===== Theme: system default + manual toggle + persistence =====
     (function () {
@@ -127,16 +180,17 @@
         if (text) text.textContent = theme === "dark" ? "Light" : "Dark";
       }
 
-      const stored = localStorage.getItem(STORAGE_KEY);
+      let stored = null;
+      try { stored = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+
       const initial = stored || getSystemTheme();
       applyTheme(initial);
 
-      /* ✅ FIX: guard against missing button */
       if (btn) {
         btn.addEventListener("click", () => {
           const current = root.getAttribute("data-theme") || "light";
           const next = current === "dark" ? "light" : "dark";
-          localStorage.setItem(STORAGE_KEY, next);
+          try { localStorage.setItem(STORAGE_KEY, next); } catch (e) {}
           applyTheme(next);
         });
       }
@@ -148,6 +202,48 @@
       if (mq && !stored) {
         mq.addEventListener("change", () => {
           applyTheme(getSystemTheme());
+        });
+      }
+    })();
+
+    // ===== Language: EN / 中文 toggle + persistence =====
+    (function () {
+      const LANG_KEY = "lang";
+      const root = document.documentElement;
+
+      const btnEN = document.getElementById("langEN");
+      const btnZH = document.getElementById("langZH");
+
+      function applyLang(lang) {
+        root.setAttribute("data-lang", lang);
+        root.setAttribute("lang", lang === "zh" ? "zh-CN" : "en");
+
+        if (btnEN && btnZH) {
+          const isEN = lang === "en";
+          btnEN.setAttribute("aria-selected", isEN ? "true" : "false");
+          btnEN.setAttribute("aria-pressed", isEN ? "true" : "false");
+          btnZH.setAttribute("aria-selected", isEN ? "false" : "true");
+          btnZH.setAttribute("aria-pressed", isEN ? "false" : "true");
+        }
+      }
+
+      let stored = null;
+      try { stored = localStorage.getItem(LANG_KEY); } catch (e) {}
+
+      // default: English
+      const initial = stored || "en";
+      applyLang(initial);
+
+      if (btnEN) {
+        btnEN.addEventListener("click", () => {
+          try { localStorage.setItem(LANG_KEY, "en"); } catch (e) {}
+          applyLang("en");
+        });
+      }
+      if (btnZH) {
+        btnZH.addEventListener("click", () => {
+          try { localStorage.setItem(LANG_KEY, "zh"); } catch (e) {}
+          applyLang("zh");
         });
       }
     })();
