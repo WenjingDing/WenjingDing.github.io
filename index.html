@@ -37,7 +37,6 @@
       overflow-x: hidden;
     }
 
-    /* Background Setup */
     .bg{
       position: fixed;
       inset: 0;
@@ -69,7 +68,6 @@
       padding: 28px 22px 80px;
     }
 
-    /* Top nav */
     .nav{
       display: flex;
       align-items: center;
@@ -101,7 +99,6 @@
     }
     .nav-links a:hover{ text-decoration: none; background: rgba(42,111,93,0.10); }
 
-    /* Hero Section */
     header.hero{
       margin-top: 26px;
       border-radius: var(--radius-lg);
@@ -182,7 +179,6 @@
     .btn:hover{ transform: translateY(-1px); box-shadow: var(--shadow-soft); text-decoration: none; }
     .btn.primary{ background: var(--accent); color: #fff; border: none; }
 
-    /* Sections Shared Style */
     .section{
       margin-top: 26px; padding: 32px;
       border-radius: var(--radius-lg); border: 1px solid var(--border);
@@ -193,7 +189,28 @@
     .section-title h3{ margin: 0; font-size: 20px; font-weight: 600; }
     .hint{ font-size: 12px; color: var(--muted); }
 
-    /* Education Grid */
+    /* Post Styles */
+    .post-card {
+      background: rgba(255, 255, 255, 0.45);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .post-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .post-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+    .post-info { line-height: 1.2; }
+    .post-name { font-size: 14px; font-weight: 600; }
+    .post-date { font-size: 12px; color: var(--muted); }
+    .post-content { font-size: 14px; margin-bottom: 15px; }
+    .post-image { 
+      width: 100%; 
+      max-height: 400px; 
+      object-fit: cover; 
+      border-radius: 12px; 
+      border: 1px solid var(--border);
+    }
+
     .edu-grid{ display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
     .edu-card{
       padding: 20px; border-radius: var(--radius);
@@ -202,7 +219,6 @@
     .card-title{ font-size: 16px; font-weight: 600; margin-bottom: 4px; }
     .card-meta{ font-size: 12px; color: var(--muted); margin-bottom: 10px; }
 
-    /* Resume Timeline Styling */
     .timeline { position: relative; padding-left: 20px; border-left: 2px solid var(--border); margin-left: 10px; }
     .resume-item { position: relative; margin-bottom: 24px; }
     .resume-dot {
@@ -215,6 +231,8 @@
       padding: 16px; border-radius: var(--radius);
       border: 1px solid var(--border);
     }
+    .resume-content ul { padding-left: 18px; margin: 8px 0 0 0; }
+    .resume-content li { font-size: 14px; margin-bottom: 6px; }
 
     .quote{
       margin-top: 20px; padding: 16px; border-left: 4px solid var(--accent);
@@ -223,7 +241,6 @@
 
     footer{ text-align: center; padding: 40px 0; font-size: 12px; color: var(--muted); }
 
-    /* Mobile Tweaks */
     @media (max-width: 600px){
       .edu-grid { grid-template-columns: 1fr; }
       .name-line h1 { font-size: 30px; }
@@ -245,6 +262,7 @@
       <div class="nav-links">
         <a href="#top">Home</a>
         <a href="#resume">Resume</a>
+        <a href="#posts">Posts</a>
         <a href="#education">Education</a>
         <a href="#about">About</a>
       </div>
@@ -271,18 +289,18 @@
 
           <div class="subtitle">
             <span class="pill"><b>Aspiring CPA</b></span>
-            <span class="pill">Leadership</span>
+            <span class="pill">Student Leadership</span>
           </div>
         </div>
 
         <div class="intro">
           <p>Hi, you found my web. Good for you.</p>
-          <p style="color:var(--muted); font-size: 14px;">Curious about how I coded everything? Ask ChatGPT. I know nothing about coding.</p>
+          <p style="color:var(--muted); font-size: 14px;">Curious about how I coded everything? Ask Gemini. I know nothing about coding.</p>
         </div>
 
         <div class="cta-row">
           <a class="btn primary" href="#resume">Experience</a>
-          <a class="btn" href="#education">Education</a>
+          <a class="btn" href="#posts">Latest Stories</a>
         </div>
       </div>
     </header>
@@ -297,9 +315,9 @@
         <p style="font-size: 14px; font-weight: 600; margin-bottom: 12px;">Expertise</p>
         <div style="display: flex; flex-wrap: wrap; gap: 8px;">
           <span class="pill">Accounting</span>
-          <span class="pill">Analysis</span>
-          <span class="pill">Communication</span>
-          <span class="pill">Leadership</span>
+          <span class="pill">Financial Analysis</span>
+          <span class="pill">Strategic Communication</span>
+          <span class="pill">Team Leadership</span>
         </div>
       </div>
 
@@ -308,24 +326,62 @@
           <div class="resume-dot"></div>
           <div class="resume-content">
             <div class="card-title">Finance Intern</div>
-            <div class="card-meta">Brookfield · 2025 09 - Present</div>
-            <p> - Booked accurate journal entries for recurring and ad‑hoc transactions with attention to details, ensuring proper classification and supporting a timely month‑end close. 
-            <br> - Assisted with consolidation activities by preparing elimination entries and reconciling intercompany and intracompany balances, contributing to the delivery of accurate consolidated financial statements. 
-            <br> - Cleared suspense accounts by investigating unmatched transactions, tracing root causes, and resolving discrepancies within cycle deadlines, strengthening accuracy in investment accounting. 
-
- </p>
+            <div class="card-meta">Brookfield · Sept 2025 - Present</div>
+            <ul>
+              <li>Booked accurate journal entries for recurring and ad‑hoc transactions with attention to detail, ensuring proper classification and supporting a timely month‑end close.</li>
+              <li>Assisted with consolidation activities by preparing elimination entries and reconciling intercompany balances, contributing to accurate consolidated financial statements.</li>
+              <li>Cleared suspense accounts by investigating unmatched transactions, tracing root causes, and resolving discrepancies within deadlines.</li>
+            </ul>
           </div>
         </div>
+
         <div class="resume-item">
           <div class="resume-dot"></div>
           <div class="resume-content">
             <div class="card-title">International Students Council Chair</div>
-            <div class="card-meta">DeGroote Commerce Society · 2025 09 - Present</div>
-            <p> - Founded the International Students Council to create a unified platform for cultural representation and student advocacy, establishing the council’s mission, structure, and operational framework 
-              <br> - Led a council to plan and deliver cultural, academic, and community‑building initiatives, such as networking events and case competitions, strengthening student engagement and enhancing the overall international student experience. </p>
+            <div class="card-meta">DeGroote Commerce Society · Sept 2024 - Present</div>
+            <ul>
+              <li>Founded the International Students Council to create a unified platform for cultural representation and advocacy, establishing its mission and operational framework.</li>
+              <li>Led council members to deliver cultural and academic initiatives, such as networking events and competitions, enhancing the student experience.</li>
+            </ul>
           </div>
         </div>
       </div>
+    </section>
+
+    <section id="posts" class="section">
+      <div class="section-title">
+        <h3>Posts</h3>
+        <div class="hint">Stories & Reflections</div>
+      </div>
+
+      <article class="post-card">
+        <div class="post-header">
+          <img src="avatar.jpg" class="post-avatar" alt="Wenjing">
+          <div class="post-info">
+            <div class="post-name">Wenjing Ding</div>
+            <div class="post-date">Just now · 2 min read</div>
+          </div>
+        </div>
+        <div class="post-content">
+          Excited to share my journey as a Finance Intern at Brookfield! Learning the ropes of month-end closes and consolidated financial statements has been an incredible experience so far. 📊✨
+        </div>
+        <img src="post1.jpg" class="post-image" alt="Work highlight">
+      </article>
+
+      <article class="post-card">
+        <div class="post-header">
+          <img src="avatar.jpg" class="post-avatar" alt="Wenjing">
+          <div class="post-info">
+            <div class="post-name">Wenjing Ding</div>
+            <div class="post-date">Yesterday</div>
+          </div>
+        </div>
+        <div class="post-content">
+          A quick snapshot from our latest International Students Council meeting. Proud of this team for building such a supportive community at DeGroote!
+        </div>
+        <img src="post2.jpg" class="post-image" alt="Council meeting">
+      </article>
     </section>
 
     <section id="education" class="section">
@@ -340,9 +396,9 @@
           <p>Specializing in Accounting. Minoring in Innovation.</p>
         </div>
          <div class="edu-card">
-          <div class="card-title">To be Continued...</div>
-          <div class="card-meta"> Learning never ends</div>
-          <p> </p>
+          <div class="card-title">Professional Growth</div>
+          <div class="card-meta">Ongoing Learning</div>
+          <p>Aspiring for CPA Ontario designation upon graduation.</p>
         </div>
       </div>
     </section>
@@ -353,12 +409,12 @@
         <div class="hint">Greetings</div>
       </div>
       <p>Hi, I’m <b>Wenjing Ding</b>.</p>
-      <p>As a B.Com undergraduate student with a strong interest in Accounting and Auditing, I am aspiring for a CPA designation. With a strong background in student leadership and a demonstrated commitment to fostering community engagement, I am confident in my communication, interpersonal and teamwork skills.</p>
+      <p>As a B.Com undergraduate student with a strong interest in Accounting and Auditing, I am aspiring for a CPA designation. My background in student leadership has fostered a commitment to community engagement and strengthened my communication and teamwork skills.</p>
       <div class="quote">Keep going, Wenjing.</div>
     </section>
 
     <footer>
-      © 2026 Wenjing Ding · Smirking Cat · Built with treat sticks and salmon cans
+      © 2026 Wenjing Ding · Built with Gemini
     </footer>
   </div>
 </body>
