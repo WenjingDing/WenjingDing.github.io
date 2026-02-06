@@ -1,12 +1,10 @@
-
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" style="scroll-behavior: smooth;">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Wenjing Ding · 小咪得志</title>
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -24,10 +22,6 @@
       --accent-2: #b07a48; /* warm brown */
       --radius: 18px;
       --radius-lg: 28px;
-
-      /* LinkedIn-like header colors */
-      --cover: #6b1432;       /* deep wine */
-      --cover-stripe: #f2b600;/* warm yellow */
       --linkedin: #0A66C2;
     }
 
@@ -40,11 +34,10 @@
       background: var(--bg);
       line-height: 1.85;
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
     }
 
-    /* --- Background: warm gradient + subtle pattern (no external image needed) --- */
+    /* Background Setup */
     .bg{
       position: fixed;
       inset: 0;
@@ -56,7 +49,6 @@
         linear-gradient(180deg, #fbfaf7 0%, #f6f3ee 50%, #f7f5f2 100%);
     }
 
-    /* SVG dot pattern overlay */
     .bg::after{
       content:"";
       position: absolute;
@@ -66,7 +58,6 @@
       background-image:
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none'%3E%3Ccircle cx='12' cy='18' r='1.2' fill='%232a6f5d' fill-opacity='0.16'/%3E%3Ccircle cx='64' cy='32' r='1.2' fill='%23b07a48' fill-opacity='0.14'/%3E%3Ccircle cx='94' cy='78' r='1.2' fill='%232a6f5d' fill-opacity='0.14'/%3E%3Ccircle cx='26' cy='92' r='1.2' fill='%23b07a48' fill-opacity='0.12'/%3E%3Ccircle cx='104' cy='14' r='1.2' fill='%232a6f5d' fill-opacity='0.10'/%3E%3C/g%3E%3C/svg%3E");
       background-size: 160px 160px;
-      filter: blur(0.2px);
       pointer-events: none;
     }
 
@@ -85,7 +76,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 14px;
-      padding: 14px 16px;
+      padding: 14px 24px;
       border: 1px solid var(--border);
       border-radius: 999px;
       background: rgba(255,255,255,0.55);
@@ -96,49 +87,22 @@
       z-index: 10;
     }
 
-    .brand{
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      min-width: 180px;
-    }
-
+    .brand{ display: flex; align-items: center; gap: 10px; }
     .brand-dot{
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
+      width: 10px; height: 10px; border-radius: 50%;
       background: linear-gradient(135deg, var(--accent), var(--accent-2));
       box-shadow: 0 6px 14px rgba(42,111,93,0.25);
     }
+    .brand-title{ font-weight: 600; letter-spacing: 0.3px; font-size: 14px; }
 
-    .brand-title{
-      font-weight: 600;
-      letter-spacing: 0.3px;
-      font-size: 14px;
-    }
-
-    .nav-links{
-      display: flex;
-      gap: 18px;
-      align-items: center;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
+    .nav-links{ display: flex; gap: 10px; align-items: center; }
     .nav-links a{
-      font-size: 13px;
-      color: rgba(31,31,31,0.78);
-      padding: 6px 10px;
-      border-radius: 999px;
+      font-size: 13px; color: rgba(31,31,31,0.78);
+      padding: 6px 12px; border-radius: 999px;
     }
+    .nav-links a:hover{ text-decoration: none; background: rgba(42,111,93,0.10); }
 
-    .nav-links a:hover{
-      text-decoration: none;
-      background: rgba(42,111,93,0.10);
-      color: rgba(31,31,31,0.92);
-    }
-
-    /* Hero (LinkedIn-like cover + overlapping avatar) */
+    /* Hero Section */
     header.hero{
       margin-top: 26px;
       border-radius: var(--radius-lg);
@@ -150,291 +114,124 @@
       position: relative;
     }
 
-    .cover{
-      height: 120px; /* smaller, neutral header */
-      background: transparent; /* remove LinkedIn-style color block */
-      position: relative;
-    }
+    .cover{ height: 100px; position: relative; }
 
-    .cover::after{
-      display: none; /* remove yellow stripe */
-    }
-
-    .hero-body{
-      padding: 0 28px 28px;
-    }
+    .hero-body{ padding: 0 28px 40px; }
 
     .profile{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      margin-top: -40px; /* reduce overlap so head is fully visible */ /* overlap cover */
+      display: flex; flex-direction: column;
+      align-items: center; text-align: center;
+      margin-top: -50px; 
     }
 
     .avatar{
-      width: 176px;
-      height: 176px;
+      width: 170px; height: 170px;
       border-radius: 50%;
       object-fit: cover;
-      /* Fix head cropping: move the crop focus upward (LinkedIn-like) */
-      object-position: 50% 8%; /* move crop higher so full head shows */
-      border: 6px solid rgba(255,255,255,0.98);
+      object-position: 50% 8%;
+      border: 6px solid #fff;
       box-shadow: var(--shadow-soft);
       background: #fff;
     }
 
     .social{
-      margin-top: 10px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
+      margin-top: 15px; display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 16px; border-radius: 999px;
       border: 1px solid rgba(40,40,40,0.12);
-      background: rgba(255,255,255,0.66);
-      font-size: 13px;
-      color: rgba(31,31,31,0.86);
-      box-shadow: 0 10px 24px rgba(15,15,15,0.06);
+      background: rgba(255,255,255,0.8);
+      font-size: 13px; font-weight: 500;
     }
 
-    .social:hover{
-      text-decoration: none;
-      border-color: rgba(10,102,194,0.35);
-      background: rgba(10,102,194,0.08);
-    }
-
-    .li-icon{
-      width: 18px;
-      height: 18px;
-      flex: 0 0 18px;
-      color: var(--linkedin);
-    }
+    .li-icon{ width: 18px; height: 18px; color: var(--linkedin); }
 
     .name-line{
-      margin-top: 18px;
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
+      margin-top: 20px; display: flex; gap: 12px;
+      align-items: center; justify-content: center; flex-wrap: wrap;
     }
 
-    .name-line h1{
-      margin: 0;
-      font-size: 40px;
-      letter-spacing: 0.4px;
-      line-height: 1.12;
-      font-weight: 600;
-    }
-
-    .designation{
-      font-weight: 600;
-      color: rgba(31,31,31,0.86);
-    }
+    .name-line h1{ margin: 0; font-size: 38px; font-weight: 600; }
 
     .badge{
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 28px;
-      height: 28px;
-      border-radius: 999px;
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 28px; height: 28px; border-radius: 50%;
       border: 1px solid rgba(31,31,31,0.18);
-      background: rgba(255,255,255,0.55);
     }
+    .badge svg{ width: 16px; height: 16px; color: rgba(31,31,31,0.6); }
 
-    .badge svg{ width: 16px; height: 16px; color: rgba(31,31,31,0.72); }
-
-    .pronouns{
-      font-size: 18px;
-      color: rgba(31,31,31,0.68);
-      font-weight: 500;
-    }
+    .pronouns{ font-size: 18px; color: var(--muted); font-weight: 500; }
 
     .subtitle{
-      margin-top: 10px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-      justify-content: center;
-      color: rgba(31,31,31,0.72);
-      font-size: 14px;
+      margin-top: 12px; display: flex; flex-wrap: wrap;
+      gap: 10px; align-items: center; justify-content: center;
     }
 
     .pill{
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 10px;
-      border: 1px solid rgba(40,40,40,0.12);
-      border-radius: 999px;
-      background: rgba(255,255,255,0.55);
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 5px 12px; border: 1px solid var(--border);
+      border-radius: 999px; background: rgba(255,255,255,0.6);
+      font-size: 13px;
     }
 
-    .pill b{ font-weight: 600; color: rgba(31,31,31,0.86); }
+    .intro{ margin-top: 24px; text-align: center; max-width: 600px; margin-left: auto; margin-right: auto; }
 
-    .intro{
-      margin-top: 18px;
-      font-size: 16px;
-      color: rgba(31,31,31,0.88);
-      max-width: 760px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .intro p{ margin: 10px 0; }
-
-    .muted{ color: var(--muted); }
-
-    .cta-row{
-      margin-top: 18px;
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-    }
+    .cta-row{ margin-top: 24px; display: flex; gap: 12px; justify-content: center; }
 
     .btn{
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(40,40,40,0.14);
-      background: rgba(255,255,255,0.62);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 10px 24px rgba(15,15,15,0.06);
-      font-size: 13px;
-      color: rgba(31,31,31,0.86);
-      cursor: pointer;
-      transition: transform 120ms ease, box-shadow 120ms ease;
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 10px 20px; border-radius: 999px;
+      border: 1px solid var(--border); background: #fff;
+      font-size: 13px; font-weight: 500; transition: 0.2s;
     }
-    .btn:hover{
-      text-decoration: none;
-      transform: translateY(-1px);
-      box-shadow: 0 14px 34px rgba(15,15,15,0.10);
-    }
+    .btn:hover{ transform: translateY(-1px); box-shadow: var(--shadow-soft); text-decoration: none; }
+    .btn.primary{ background: var(--accent); color: #fff; border: none; }
 
-    .btn.primary{
-      border-color: rgba(42,111,93,0.35);
-      background: rgba(42,111,93,0.10);
-    }
-
-    /* Sections */
+    /* Sections Shared Style */
     .section{
-      margin-top: 26px;
-      padding: 26px 24px;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
-      background: var(--card);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 14px 40px rgba(15,15,15,0.08);
+      margin-top: 26px; padding: 32px;
+      border-radius: var(--radius-lg); border: 1px solid var(--border);
+      background: var(--card); backdrop-filter: blur(10px);
     }
 
-    .section-title{
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 14px;
-      margin-bottom: 14px;
-    }
+    .section-title{ display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 24px; }
+    .section-title h3{ margin: 0; font-size: 20px; font-weight: 600; }
+    .hint{ font-size: 12px; color: var(--muted); }
 
-    .section-title h3{
-      margin: 0;
-      font-size: 18px;
-      font-weight: 600;
-      letter-spacing: 0.3px;
-    }
-
-    .section-title .hint{
-      font-size: 12px;
-      color: rgba(31,31,31,0.60);
-    }
-
-    .grid{
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 14px;
-    }
-
+    /* Grid for Notes */
+    .grid{ display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
     .card{
-      grid-column: span 6;
-      padding: 16px 16px;
-      border-radius: var(--radius);
-      border: 1px solid rgba(40,40,40,0.10);
-      background: rgba(255,255,255,0.62);
-      box-shadow: 0 10px 26px rgba(15,15,15,0.06);
-      transition: transform 120ms ease, box-shadow 120ms ease;
+      padding: 20px; border-radius: var(--radius);
+      border: 1px solid var(--border); background: rgba(255,255,255,0.5);
     }
+    .card-title{ font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+    .card-meta{ font-size: 12px; color: var(--muted); margin-bottom: 10px; }
 
-    .card:hover{
-      transform: translateY(-1px);
-      box-shadow: 0 14px 34px rgba(15,15,15,0.10);
+    /* Resume Specific Styling */
+    .timeline { position: relative; padding-left: 20px; border-left: 2px solid var(--border); margin-left: 10px; }
+    .resume-item { position: relative; margin-bottom: 24px; }
+    .resume-dot {
+      position: absolute; left: -27px; top: 6px;
+      width: 12px; height: 12px; background: var(--accent);
+      border-radius: 50%; border: 3px solid #fff;
     }
-
-    .card-title{
-      font-size: 16px;
-      font-weight: 600;
-      margin: 0 0 6px;
-      letter-spacing: 0.2px;
-    }
-
-    .card-meta{
-      font-size: 12px;
-      color: rgba(31,31,31,0.55);
-      margin-bottom: 10px;
-    }
-
-    .card p{
-      margin: 0;
-      color: rgba(31,31,31,0.78);
-      font-size: 14px;
-    }
-
-    .two-col{
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
+    .resume-content {
+      background: rgba(255, 255, 255, 0.4);
+      padding: 16px; border-radius: var(--radius);
+      border: 1px solid var(--border);
     }
 
     .quote{
-      padding: 14px 16px;
-      border-left: 3px solid rgba(42,111,93,0.45);
-      background: rgba(42,111,93,0.07);
-      border-radius: 14px;
-      color: rgba(31,31,31,0.82);
-      font-size: 14px;
+      margin-top: 20px; padding: 16px; border-left: 4px solid var(--accent);
+      background: rgba(42,111,93,0.06); border-radius: 12px;
     }
 
-    footer{
-      text-align: center;
-      margin-top: 18px;
-      padding: 28px 10px 0;
-      font-size: 12px;
-      color: rgba(31,31,31,0.55);
-    }
+    footer{ text-align: center; padding: 40px 0; font-size: 12px; color: var(--muted); }
 
-    /* Responsive */
-    @media (max-width: 860px){
-      .name-line h1{ font-size: 34px; }
-      .container{ padding: 18px 14px 70px; }
-      .hero-body{ padding: 0 18px 22px; }
-      .section{ padding: 20px 16px; }
-      .card{ grid-column: span 12; }
-      .two-col{ grid-template-columns: 1fr; }
-      .brand{ min-width: unset; }
-      .nav-links{ gap: 8px; }
-    }
-
-    @media (max-width: 480px){
-      .cover{ height: 130px; }
-      .profile{ margin-top: -70px; }
-      .avatar{ width: 156px; height: 156px; }
-      .name-line h1{ font-size: 30px; }
-      .pronouns{ font-size: 16px; }
+    /* Mobile Tweaks */
+    @media (max-width: 600px){
+      .grid { grid-template-columns: 1fr; }
+      .name-line h1 { font-size: 30px; }
+      .nav { padding: 10px 16px; }
+      .section { padding: 20px; }
     }
   </style>
 </head>
@@ -443,45 +240,34 @@
   <div class="bg" aria-hidden="true"></div>
 
   <div class="container">
-
-    <!-- Top Nav -->
     <nav class="nav">
       <div class="brand">
-        <span class="brand-dot" aria-hidden="true"></span>
+        <span class="brand-dot"></span>
         <span class="brand-title">小咪得志</span>
       </div>
       <div class="nav-links">
         <a href="#top">Home</a>
         <a href="#notes">Notes</a>
+        <a href="#resume">Resume</a>
         <a href="#about">About</a>
       </div>
     </nav>
 
-    <!-- Hero -->
     <header id="top" class="hero">
-      <div class="cover" aria-hidden="true"></div>
-
+      <div class="cover"></div>
       <div class="hero-body">
         <div class="profile">
-          <!-- Avatar: keep only on homepage -->
           <img src="avatar.jpg" alt="Wenjing Ding" class="avatar" />
-
-          <!-- LinkedIn under headshot -->
-          <a class="social" href="https://www.linkedin.com/in/wenjingding/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-            <svg class="li-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M20.45 20.45H16.9v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.14 1.45-2.14 2.95v5.67H9.35V9h3.4v1.56h.05c.47-.9 1.62-1.86 3.33-1.86 3.56 0 4.22 2.35 4.22 5.4v6.35zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46C23.2 24 24 23.23 24 22.28V1.72C24 .77 23.2 0 22.23 0z"/>
-            </svg>
+          
+          <a class="social" href="https://www.linkedin.com/in/wenjingding/" target="_blank" rel="noopener">
+            <svg class="li-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45H16.9v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.14 1.45-2.14 2.95v5.67H9.35V9h3.4v1.56h.05c.47-.9 1.62-1.86 3.33-1.86 3.56 0 4.22 2.35 4.22 5.4v6.35zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46C23.2 24 24 23.23 24 22.28V1.72C24 .77 23.2 0 22.23 0z"/></svg>
             <span>LinkedIn</span>
           </a>
 
-          <!-- Name line like LinkedIn (name + designation + badge + pronouns) -->
           <div class="name-line">
-            <h1>Wenjing Ding</span></h1>
-            <span class="badge" title="Designation">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M12 2l8 4v6c0 5-3.5 9.4-8 10-4.5-.6-8-5-8-10V6l8-4z"/>
-                <path d="M9 12l2 2 4-5"/>
-              </svg>
+            <h1>Wenjing Ding</h1>
+            <span class="badge" title="Verified">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 9.4-8 10-4.5-.6-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-5"/></svg>
             </span>
             <span class="pronouns">She/Her</span>
           </div>
@@ -494,80 +280,85 @@
 
         <div class="intro">
           <p>Hi, you found my web. Good for you.</p>
-          <p class="muted">Curious about how I coded everything?</p>
-
-          <p style="margin-top:14px;">Ask ChatGPT</p>
-          <p class="muted">I know nothing about coding.</p>
+          <p style="color:var(--muted); font-size: 14px;">Curious about how I coded everything? Ask ChatGPT. I know nothing about coding.</p>
         </div>
 
         <div class="cta-row">
-          <a class="btn primary" href="#notes">Notes</a>
-          <a class="btn" href="#about">About Me</a>
+          <a class="btn primary" href="#notes">Read Notes</a>
+          <a class="btn" href="#resume">View Resume</a>
         </div>
       </div>
     </header>
 
-
-    <!-- Notes -->
     <section id="notes" class="section">
       <div class="section-title">
         <h3>Notes</h3>
         <div class="hint">Nothing here yet, check later man.</div>
       </div>
-
       <div class="grid">
         <article class="card">
           <div class="card-title">First Note</div>
           <div class="card-meta">2026 · Coming Soon</div>
-          <p>Nothing here neither.</p>
+          <p>Writing in progress...</p>
         </article>
-
         <article class="card">
           <div class="card-title">Untitled Thoughts</div>
-          <div class="card-meta">Coming Soon</div>
-          <p>Nothing here neither.</p>
-        </article>
-
-        <article class="card">
-          <div class="card-title">Reading / Film / Moments</div>
-          <div class="card-meta">Template</div>
-          <p>Nothing here neither.</p>
-        </article>
-
-        <article class="card">
-          <div class="card-title">Someday</div>
           <div class="card-meta">Template</div>
           <p>Nothing here neither.</p>
         </article>
       </div>
     </section>
 
+    <section id="resume" class="section">
+      <div class="section-title">
+        <h3>Experience & Skills</h3>
+        <div class="hint">Professional timeline</div>
+      </div>
 
-    <!-- About -->
+      <div style="margin-bottom: 30px;">
+        <p style="font-size: 14px; font-weight: 600; margin-bottom: 12px;">Expertise</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+          <span class="pill">Project Management</span>
+          <span class="pill">Digital Strategy</span>
+          <span class="pill">UI/UX Design</span>
+          <span class="pill">Cat Herding</span>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <div class="resume-item">
+          <div class="resume-dot"></div>
+          <div class="resume-content">
+            <div class="card-title">Your Role Title</div>
+            <div class="card-meta">Company Name · 2023 - Present</div>
+            <p>Describe your main impact and responsibilities here. Keep it concise and result-oriented.</p>
+          </div>
+        </div>
+
+        <div class="resume-item">
+          <div class="resume-dot"></div>
+          <div class="resume-content">
+            <div class="card-title">Previous Position</div>
+            <div class="card-meta">Past Company · 2021 - 2023</div>
+            <p>Another highlight of your career. Mention a specific project or a skill you mastered during this time.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="about" class="section">
       <div class="section-title">
         <h3>About</h3>
         <div class="hint">Meow</div>
       </div>
-
-      <div class="two-col">
-       
-        <div>
-          <p>Hi, I’m <b>Wenjing Ding</b>.</p>
-          <p>“小咪得志” is the name I use online, It means "Smirking Cat". I want a cat</p>
-          <p class="muted">Built with treat sticks and salmon cans</p>
-        </div>
-      </div>
-
-      <div style="margin-top:14px;" class="quote">
-        Keep going Wenjing.<br>
-      </div>
+      <p>Hi, I’m <b>Wenjing Ding</b>.</p>
+      <p>“小咪得志” is the name I use online. It means "Smirking Cat". I really want a cat.</p>
+      <div class="quote">Keep going, Wenjing.</div>
     </section>
 
     <footer>
       © 2026 Wenjing Ding · Smirking Cat · Built with treat sticks and salmon cans
     </footer>
-
   </div>
 </body>
 </html>
