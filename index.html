@@ -1,5 +1,6 @@
+
 <!DOCTYPE html>
-<html lang="en" data-lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,48 +11,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <!-- ================= STYLES (MOSTLY UNCHANGED) ================= -->
+  <!-- ================= STYLES (UNCHANGED) ================= -->
   <style>
     /* your entire original CSS is unchanged */
     /* ... */
-
-    /* ===== Language toggle (minimal add-on) ===== */
-    .lang-toggle{
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      padding:6px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.06);
-    }
-    :root[data-theme="light"] .lang-toggle{
-      border-color: rgba(0,0,0,.10);
-      background: rgba(0,0,0,.04);
-    }
-    .lang-btn{
-      border:0;
-      background:transparent;
-      cursor:pointer;
-      padding:6px 10px;
-      border-radius:999px;
-      font:inherit;
-      line-height:1;
-      opacity:.75;
-      user-select:none;
-    }
-    .lang-btn[aria-pressed="true"]{
-      opacity:1;
-      background:rgba(255,255,255,.14);
-    }
-    :root[data-theme="light"] .lang-btn[aria-pressed="true"]{
-      background: rgba(0,0,0,.10);
-    }
-
-    /* Hide/show by language */
-    [data-lang]{ display:none; }
-    html[data-lang="en"] [data-lang="en"]{ display: initial; }
-    html[data-lang="zh"] [data-lang="zh"]{ display: initial; }
   </style>
 </head>
 
@@ -64,8 +27,7 @@
     <nav class="nav">
       <div class="brand">
         <span class="brand-dot"></span>
-        <!-- ✅ Removed “只开小火车” -->
-        <span class="brand-title">Wenjing Ding</span>
+        <span class="brand-title">只开小火车</span>
       </div>
 
       <div class="nav-links">
@@ -80,12 +42,6 @@
         <a href="essays.html">All Essays</a>
         <a href="music.html">Music Page</a>
         <a href="archive.html">Archive</a>
-
-        <!-- ✅ Language tab (minimal) -->
-        <div class="lang-toggle" role="tablist" aria-label="Language">
-          <button class="lang-btn" id="langEN" type="button" aria-pressed="true">EN</button>
-          <button class="lang-btn" id="langZH" type="button" aria-pressed="false">中文</button>
-        </div>
 
         <button class="theme-toggle" id="themeToggle" type="button">
           <span id="themeIcon">🌙</span>
@@ -110,8 +66,7 @@
           <div class="bio">
             <div class="bio-title">Bio</div>
             <div class="bio-text">
-              <p class="muted" data-lang="en">Hi there, welcome to my web!</p>
-              <p class="muted" data-lang="zh">你好，欢迎来到我的网站！</p>
+              <p class="muted">Hi there, welcome to my web!</p>
             </div>
           </div>
         </div>
@@ -120,33 +75,27 @@
 
     <!-- ================= SECTIONS ================= -->
     <section id="notes" class="section reveal">
-      <h3 data-lang="en">Notes</h3>
-      <h3 data-lang="zh">随想</h3>
+      <h3>随想 · Notes</h3>
     </section>
 
     <section id="essays" class="section reveal">
-      <h3 data-lang="en">Essays</h3>
-      <h3 data-lang="zh">随笔</h3>
+      <h3>随笔 · Essays</h3>
     </section>
 
     <section id="music" class="section reveal">
-      <h3 data-lang="en">Music</h3>
-      <h3 data-lang="zh">音乐</h3>
+      <h3>音乐 · Music</h3>
     </section>
 
     <section id="library" class="section reveal">
-      <h3 data-lang="en">Library</h3>
-      <h3 data-lang="zh">收藏</h3>
+      <h3>收藏 · Library</h3>
     </section>
 
     <section id="now" class="section reveal">
-      <h3 data-lang="en">Now</h3>
-      <h3 data-lang="zh">现在</h3>
+      <h3>现在 · Now</h3>
     </section>
 
     <section id="about" class="section reveal">
-      <h3 data-lang="en">About</h3>
-      <h3 data-lang="zh">关于</h3>
+      <h3>关于 · About</h3>
     </section>
 
     <footer>
@@ -155,7 +104,7 @@
 
   </div>
 
-  <!-- ================= SCRIPTS ================= -->
+  <!-- ================= FIXED SCRIPT ================= -->
   <script>
     // ===== Theme: system default + manual toggle + persistence =====
     (function () {
@@ -179,17 +128,16 @@
         if (text) text.textContent = theme === "dark" ? "Light" : "Dark";
       }
 
-      let stored = null;
-      try { stored = localStorage.getItem(STORAGE_KEY); } catch (e) {}
-
+      const stored = localStorage.getItem(STORAGE_KEY);
       const initial = stored || getSystemTheme();
       applyTheme(initial);
 
+      /* ✅ FIX: guard against missing button */
       if (btn) {
         btn.addEventListener("click", () => {
           const current = root.getAttribute("data-theme") || "light";
           const next = current === "dark" ? "light" : "dark";
-          try { localStorage.setItem(STORAGE_KEY, next); } catch (e) {}
+          localStorage.setItem(STORAGE_KEY, next);
           applyTheme(next);
         });
       }
@@ -203,36 +151,6 @@
           applyTheme(getSystemTheme());
         });
       }
-    })();
-
-    // ===== Language: EN / 中文 toggle + persistence (minimal) =====
-    (function () {
-      const LANG_KEY = "lang";
-      const root = document.documentElement;
-      const btnEN = document.getElementById("langEN");
-      const btnZH = document.getElementById("langZH");
-
-      function applyLang(lang) {
-        root.setAttribute("data-lang", lang);
-        root.setAttribute("lang", lang === "zh" ? "zh-CN" : "en");
-        if (btnEN) btnEN.setAttribute("aria-pressed", lang === "en" ? "true" : "false");
-        if (btnZH) btnZH.setAttribute("aria-pressed", lang === "zh" ? "true" : "false");
-      }
-
-      let stored = null;
-      try { stored = localStorage.getItem(LANG_KEY); } catch (e) {}
-
-      // default EN so Chinese won't show unless user chooses
-      applyLang(stored || "en");
-
-      if (btnEN) btnEN.addEventListener("click", () => {
-        try { localStorage.setItem(LANG_KEY, "en"); } catch (e) {}
-        applyLang("en");
-      });
-      if (btnZH) btnZH.addEventListener("click", () => {
-        try { localStorage.setItem(LANG_KEY, "zh"); } catch (e) {}
-        applyLang("zh");
-      });
     })();
 
     // ===== Smooth scroll (SAFE) =====
