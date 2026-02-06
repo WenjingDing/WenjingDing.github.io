@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en" data-lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,10 +10,240 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <!-- ================= STYLES (UNCHANGED) ================= -->
   <style>
-    /* your entire original CSS is unchanged */
-    /* ... */
+    /* ================= BASE STYLE (so it renders correctly) ================= */
+    :root{
+      --bg: #0b0f14;
+      --card: rgba(255,255,255,.06);
+      --border: rgba(255,255,255,.12);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.68);
+      --shadow: 0 18px 60px rgba(0,0,0,.35);
+      --radius: 18px;
+      --maxw: 980px;
+      --gap: 18px;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+    :root[data-theme="light"]{
+      --bg: #f6f7fb;
+      --card: rgba(0,0,0,.04);
+      --border: rgba(0,0,0,.10);
+      --text: rgba(0,0,0,.88);
+      --muted: rgba(0,0,0,.60);
+      --shadow: 0 18px 60px rgba(0,0,0,.12);
+    }
+
+    *{ box-sizing: border-box; }
+    html,body{ margin:0; padding:0; }
+    body{
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    .bg{
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(800px 400px at 20% 10%, rgba(140,180,255,.18), transparent 60%),
+        radial-gradient(700px 420px at 80% 20%, rgba(255,140,220,.14), transparent 60%),
+        radial-gradient(900px 520px at 50% 85%, rgba(120,255,210,.10), transparent 60%);
+      filter: blur(0px);
+      opacity: .9;
+    }
+
+    .container{
+      width: min(var(--maxw), calc(100% - 34px));
+      margin: 22px auto 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ================= NAV ================= */
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 16px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,.10);
+      backdrop-filter: blur(12px);
+      border-radius: 999px;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 14px;
+      z-index: 10;
+    }
+    :root[data-theme="light"] .nav{ background: rgba(255,255,255,.72); }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding-left: 6px;
+      white-space: nowrap;
+    }
+    .brand-dot{
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.85);
+      box-shadow: 0 0 0 4px rgba(255,255,255,.10);
+    }
+    :root[data-theme="light"] .brand-dot{
+      background: rgba(0,0,0,.85);
+      box-shadow: 0 0 0 4px rgba(0,0,0,.08);
+    }
+    .brand-title{ font-weight: 600; letter-spacing:.2px; }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .nav a{
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: .18s ease;
+    }
+    .nav a:hover{
+      color: var(--text);
+      border-color: var(--border);
+      background: var(--card);
+    }
+
+    /* ================= HERO ================= */
+    .hero{
+      margin-top: 18px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+    .cover{
+      height: 140px;
+      background:
+        linear-gradient(120deg, rgba(140,180,255,.22), rgba(255,140,220,.18), rgba(120,255,210,.14));
+    }
+    .hero-body{ padding: 18px; }
+    .profile{
+      display:flex;
+      gap: 16px;
+      align-items: flex-start;
+      margin-top: -42px;
+    }
+    .avatar{
+      width: 96px;
+      height: 96px;
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      object-fit: cover;
+      background: rgba(255,255,255,.10);
+    }
+    .name-line{
+      display:flex;
+      align-items: baseline;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    h1{ margin:0; font-size: 28px; letter-spacing:.2px; }
+    .pronouns{ color: var(--muted); font-size: 14px; }
+
+    .bio{ margin-top: 10px; }
+    .bio-title{ font-weight: 600; font-size: 14px; margin-bottom: 6px; }
+    .muted{ color: var(--muted); margin: 0; }
+
+    /* ================= SECTIONS ================= */
+    .section{
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+    .section h3{ margin: 0; font-size: 18px; }
+
+    footer{
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+      padding: 18px 0 0;
+    }
+
+    /* ================= Buttons ================= */
+    .theme-toggle{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      padding: 8px 10px;
+      border-radius: 999px;
+      cursor: pointer;
+      font: inherit;
+      transition: .18s ease;
+    }
+    .theme-toggle:hover{ transform: translateY(-1px); }
+    .hint{ color: var(--muted); font-size: 13px; }
+
+    /* ================= Reveal ================= */
+    .reveal{ opacity: 0; transform: translateY(10px); transition: .55s ease; }
+    .reveal.is-visible{ opacity: 1; transform: translateY(0); }
+
+    /* ================= Language toggle (minimal add-on) ================= */
+    .lang-toggle{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:6px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background: var(--card);
+    }
+    .lang-btn{
+      border:0;
+      background:transparent;
+      cursor:pointer;
+      padding:6px 10px;
+      border-radius:999px;
+      font:inherit;
+      line-height:1;
+      opacity:.75;
+      user-select:none;
+      color: var(--text);
+    }
+    .lang-btn[aria-pressed="true"]{
+      opacity:1;
+      background: rgba(255,255,255,.10);
+    }
+    :root[data-theme="light"] .lang-btn[aria-pressed="true"]{
+      background: rgba(0,0,0,.08);
+    }
+
+    /* Hide/show by language */
+    [data-lang]{ display:none; }
+    html[data-lang="en"] [data-lang="en"]{ display: initial; }
+    html[data-lang="zh"] [data-lang="zh"]{ display: initial; }
+
+    /* ================= Responsive ================= */
+    @media (max-width: 720px){
+      .nav{ border-radius: 22px; padding: 12px; }
+      .profile{ flex-direction: column; align-items: flex-start; margin-top: -54px; }
+      .avatar{ width: 92px; height: 92px; }
+    }
   </style>
 </head>
 
@@ -42,6 +272,12 @@
         <a href="music.html">Music Page</a>
         <a href="archive.html">Archive</a>
 
+        <!-- ✅ Language tab -->
+        <div class="lang-toggle" role="tablist" aria-label="Language">
+          <button class="lang-btn" id="langEN" type="button" aria-pressed="true">EN</button>
+          <button class="lang-btn" id="langZH" type="button" aria-pressed="false">中文</button>
+        </div>
+
         <button class="theme-toggle" id="themeToggle" type="button">
           <span id="themeIcon">🌙</span>
           <span class="hint" id="themeText">Dark</span>
@@ -57,44 +293,54 @@
         <div class="profile">
           <img src="avatar.jpg" alt="Wenjing Ding" class="avatar" />
 
-          <div class="name-line">
-            <h1>Wenjing Ding</h1>
-            <span class="pronouns">She/Her</span>
-          </div>
+          <div>
+            <div class="name-line">
+              <h1>Wenjing Ding</h1>
+              <span class="pronouns">She/Her</span>
+            </div>
 
-          <div class="bio">
-            <div class="bio-title">Bio</div>
-            <div class="bio-text">
-              <p class="muted">Hi there, welcome to my web!</p>
+            <div class="bio">
+              <div class="bio-title">Bio</div>
+              <div class="bio-text">
+                <p class="muted" data-lang="en">Hi there, welcome to my web!</p>
+                <p class="muted" data-lang="zh">你好，欢迎来到我的网站！</p>
+              </div>
             </div>
           </div>
+
         </div>
       </div>
     </header>
 
     <!-- ================= SECTIONS ================= -->
     <section id="notes" class="section reveal">
-      <h3>随想 · Notes</h3>
+      <h3 data-lang="en">Notes</h3>
+      <h3 data-lang="zh">随想</h3>
     </section>
 
     <section id="essays" class="section reveal">
-      <h3>随笔 · Essays</h3>
+      <h3 data-lang="en">Essays</h3>
+      <h3 data-lang="zh">随笔</h3>
     </section>
 
     <section id="music" class="section reveal">
-      <h3>音乐 · Music</h3>
+      <h3 data-lang="en">Music</h3>
+      <h3 data-lang="zh">音乐</h3>
     </section>
 
     <section id="library" class="section reveal">
-      <h3>收藏 · Library</h3>
+      <h3 data-lang="en">Library</h3>
+      <h3 data-lang="zh">收藏</h3>
     </section>
 
     <section id="now" class="section reveal">
-      <h3>现在 · Now</h3>
+      <h3 data-lang="en">Now</h3>
+      <h3 data-lang="zh">现在</h3>
     </section>
 
     <section id="about" class="section reveal">
-      <h3>关于 · About</h3>
+      <h3 data-lang="en">About</h3>
+      <h3 data-lang="zh">关于</h3>
     </section>
 
     <footer>
@@ -103,7 +349,6 @@
 
   </div>
 
-  <!-- ================= FIXED SCRIPT ================= -->
   <script>
     // ===== Theme: system default + manual toggle + persistence =====
     (function () {
@@ -127,29 +372,55 @@
         if (text) text.textContent = theme === "dark" ? "Light" : "Dark";
       }
 
-      const stored = localStorage.getItem(STORAGE_KEY);
+      let stored = null;
+      try { stored = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+
       const initial = stored || getSystemTheme();
       applyTheme(initial);
 
-      /* ✅ FIX: guard against missing button */
       if (btn) {
         btn.addEventListener("click", () => {
           const current = root.getAttribute("data-theme") || "light";
           const next = current === "dark" ? "light" : "dark";
-          localStorage.setItem(STORAGE_KEY, next);
+          try { localStorage.setItem(STORAGE_KEY, next); } catch (e) {}
           applyTheme(next);
         });
       }
 
-      const mq = window.matchMedia
-        ? window.matchMedia("(prefers-color-scheme: dark)")
-        : null;
-
+      const mq = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
       if (mq && !stored) {
-        mq.addEventListener("change", () => {
-          applyTheme(getSystemTheme());
-        });
+        mq.addEventListener("change", () => applyTheme(getSystemTheme()));
       }
+    })();
+
+    // ===== Language: EN / 中文 toggle + persistence =====
+    (function () {
+      const LANG_KEY = "lang";
+      const root = document.documentElement;
+      const btnEN = document.getElementById("langEN");
+      const btnZH = document.getElementById("langZH");
+
+      function applyLang(lang) {
+        root.setAttribute("data-lang", lang);
+        root.setAttribute("lang", lang === "zh" ? "zh-CN" : "en");
+        if (btnEN) btnEN.setAttribute("aria-pressed", lang === "en" ? "true" : "false");
+        if (btnZH) btnZH.setAttribute("aria-pressed", lang === "zh" ? "true" : "false");
+      }
+
+      let stored = null;
+      try { stored = localStorage.getItem(LANG_KEY); } catch (e) {}
+
+      // default EN => Chinese hidden unless user chooses
+      applyLang(stored || "en");
+
+      if (btnEN) btnEN.addEventListener("click", () => {
+        try { localStorage.setItem(LANG_KEY, "en"); } catch (e) {}
+        applyLang("en");
+      });
+      if (btnZH) btnZH.addEventListener("click", () => {
+        try { localStorage.setItem(LANG_KEY, "zh"); } catch (e) {}
+        applyLang("zh");
+      });
     })();
 
     // ===== Smooth scroll (SAFE) =====
