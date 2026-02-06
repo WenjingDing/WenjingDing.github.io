@@ -700,7 +700,6 @@
     <div class="topbar-right">
       <select class="lang-select edge" id="langSelect" aria-label="Language selector">
         <option value="zh-CN">简体中文</option>
-        <option value="zh-TW">繁體中文</option>
         <option value="en-CA">English (Canada)</option>
       </select>
 
@@ -1089,7 +1088,7 @@
 
   <script>
     // ===============================
-    // i18n: zh-CN / zh-TW / en-CA
+    // i18n: zh-CN / en-CA
     // How to extend later:
     // 1) 给任何元素加 data-i18n="your.key"
     // 2) 在下面 I18N 字典里三种语言都补上同一个 key 的文案
@@ -1273,174 +1272,7 @@
         "footer": "© 2026 Wenjing Ding · Train in Motion · Built with calm and patience"
       },
 
-      "zh-TW": {
-        "brand.community": "Community",
-        "nav.notes": "隨想",
-        "nav.essays": "隨筆",
-        "nav.music": "音樂",
-        "nav.library": "收藏",
-        "nav.now": "現在",
-        "nav.tracks": "軌道",
-
-        "social.linkedin": "LinkedIn",
-        "social.instagram": "Instagram",
-
-        "hero.pronouns": "他 / He",
-        "hero.pill1": "只開小火車",
-        "hero.pill2": "個人空間 · 小火車在前進",
-        "hero.bioTitle": "簡介",
-        "hero.bioPlaceholder": "（把你的 Bio 發我，我會替換到這裡：中英文都可以）",
-        "hero.intro1": "一個記錄生活、情緒與思考的角落。",
-        "hero.intro2": "這裡沒有宏大敘事，只有零散的真實。",
-        "hero.intro3": "一個安靜的地方，用來記錄生活、情緒與思考。",
-        "hero.intro4": "不求宏大，只保留真實的碎片。",
-
-        "cta.readNotes": "去看隨想",
-        "cta.tracks": "軌道",
-        "cta.music": "分享音樂",
-
-        "quick.go": "→ 進入",
-        "quick.open": "↗ 打開",
-        "quick.notes.title": "隨想",
-        "quick.notes.desc": "短句、片段、心情與想法。像時間線一樣慢慢累積。",
-        "quick.essays.title": "隨筆",
-        "quick.essays.desc": "更長的文字：故事、復盤、思考、方法論。",
-        "quick.music.title": "音樂",
-        "quick.music.desc": "每週一首歌 + 一句理由。把聽見的東西留下來。",
-        "quick.library.title": "收藏",
-        "quick.library.desc": "書、電影、播客、文章：你喜歡的東西會構成你。",
-        "quick.archive.title": "歸檔",
-        "quick.archive.desc": "按年份/主題整理（以後你寫多了會非常有用）。",
-        "quick.tracks.title": "軌道",
-        "quick.tracks.desc": "你正在做的事、你要去的方向、以及聯絡你。",
-
-        "section.notes.title": "隨想",
-        "section.notes.hint": "（下一步可以把每篇隨想做成獨立頁面 + 獨立連結）",
-        "section.essays.title": "隨筆",
-        "section.essays.hint": "更長的表達：故事 / 復盤 / 方法論",
-        "section.music.title": "音樂",
-        "section.music.hint": "每週一首歌 + 一句理由（很有個人氣質）",
-        "section.library.title": "收藏",
-        "section.library.hint": "書 / 電影 / 播客 / 文章：你喜歡的東西會組成你",
-        "section.now.title": "現在",
-        "section.now.hint": "一段「此刻的我」，隨時可改",
-        "section.tracks.title": "軌道",
-        "section.tracks.hint": "正在做的事 / 想去的方向 / 聯絡方式",
-
-        "notes.card1.title": "第一篇隨想",
-        "notes.card1.meta": "2026 · 即將上線",
-        "notes.card1.desc": "先從一段短短的記錄開始。你可以很隨意，但它會慢慢變成一條時間線。",
-
-        "notes.card2.title": "一些尚未命名的思考",
-        "notes.card2.meta": "即將上線",
-        "notes.card2.desc": "不需要「作品」。把生活裡的小線頭收集起來，它們會變成你的風格。",
-
-        "notes.card3.title": "讀書 / 電影 / 片刻",
-        "notes.card3.meta": "模板",
-        "notes.card3.desc": "你也可以把這個卡片改成「最近在看什麼」，或「本週一句話」。",
-
-        "notes.card4.title": "未來的某天",
-        "notes.card4.meta": "模板",
-        "notes.card4.desc": "留一個空位給未來。等你想寫的時候，它就在那里。",
-
-        "essays.card1.title": "隨筆模板",
-        "essays.card1.meta": "2026 · 草稿",
-        "essays.card1.desc": "寫一篇 600～1200 字：講清楚「我在想什麼」，就夠了。",
-
-        "essays.card2.title": "復盤：我如何讓自己持續前進",
-        "essays.card2.meta": "即將上線",
-        "essays.card2.desc": "你可以寫：目標、阻力、策略、下一步。慢慢把「系統」搭起來。",
-
-        "music.week.title": "本週推薦",
-        "music.week.song": "🎧 歌曲：____________",
-        "music.week.artist": "🎼 歌手：____________",
-        "music.week.why": "✍️ 理由：______________________",
-
-        "music.links.title": "放連結（Spotify / Apple Music / YouTube）",
-        "music.links.spotify": "· Spotify： (link)",
-        "music.links.apple": "· Apple Music： (link)",
-        "music.links.youtube": "· YouTube： (link)",
-        "music.openPage": "進入音樂頁",
-
-        "music.card1.title": "播放清單 · 夜裡開小火車",
-        "music.card1.meta": "模板",
-        "music.card1.desc": "把 10 首歌做成一個主題播放清單，配一句話介紹。",
-
-        "music.card2.title": "音樂碎片",
-        "music.card2.meta": "模板",
-        "music.card2.desc": "記錄一句歌詞、一段旋律帶來的感受。",
-
-        "library.card1.title": "📚 我在讀的書",
-        "library.card1.meta": "隨時更新",
-        "library.card1.desc": "《______》— 為什麼在讀：______",
-
-        "library.card2.title": "🎬 電影 / 劇集",
-        "library.card2.meta": "隨時更新",
-        "library.card2.desc": "本週看了：______。一句話感受：______。",
-
-        "now.cn.title": "這段可以當作你的「近況欄」",
-        "now.cn.focus": "· 最近在專注：____________",
-        "now.cn.learning": "· 最近在學習：____________",
-        "now.cn.thinking": "· 最近在思考：____________",
-
-        "now.en.title": "（英文版本也可以寫在這裡）",
-        "now.en.focus": "· Focus：____________",
-        "now.en.learning": "· Learning：____________",
-        "now.en.thinking": "· Thinking：____________",
-
-        "tracks.left.title": "在路上",
-        "tracks.left.desc": "把這裡當成你的「公開進度條」：你正在搭建什麼、練什麼、追什麼。",
-        "tracks.left.boxTitle": "正在做",
-        "tracks.left.item1": "· 個人網站：優化寫作 + 結構",
-        "tracks.left.item2": "· 隨想 / 隨筆：每週更新",
-        "tracks.left.item3": "· 音樂：本週推薦",
-
-        "tracks.right.title": "聯絡",
-        "tracks.right.desc": "你可以把這裡改成：信箱、履歷、作品集（建議公開信箱即可）。",
-        "tracks.right.linksTitle": "連結",
-        "tracks.right.linksDesc": "· LinkedIn / Instagram 已在頭像下方<br>· 你也可以加：GitHub、履歷、信箱",
-        "tracks.right.github": "GitHub（修改）",
-        "tracks.right.resume": "履歷（修改）",
-        "tracks.right.email": "信箱（修改）",
-        "tracks.right.quote": "中文：慢一點也沒關係，重要的是持續向前。<br>English: It’s okay to go slowly — what matters is staying in motion.",
-
-        "action.read": "閱讀",
-        "action.open": "打開",
-        "action.archive": "歸檔",
-        "action.toLibrary": "去收藏區",
-        "action.allEssays": "查看全部",
-
-        "tag.life": "生活",
-        "tag.reflection": "反思",
-        "tag.bilingual": "中文/EN",
-        "tag.slow": "慢",
-        "tag.quiet": "安靜",
-        "tag.notes": "隨想",
-        "tag.reading": "閱讀",
-        "tag.film": "電影",
-        "tag.moments": "片刻",
-        "tag.future": "未來",
-        "tag.empty": "空位",
-        "tag.keep": "保留",
-        "tag.essay": "隨筆",
-        "tag.longform": "長文",
-        "tag.draft": "草稿",
-        "tag.review": "復盤",
-        "tag.systems": "系統",
-        "tag.growth": "成長",
-        "tag.playlist": "播放清單",
-        "tag.mood": "情緒",
-        "tag.weekly": "每週",
-        "tag.lyrics": "歌詞",
-        "tag.feelings": "感受",
-        "tag.books": "書籍",
-        "tag.series": "劇集",
-        "tag.connect": "聯絡",
-        "tag.links": "連結",
-        "tag.public": "公開",
-
-        "footer": "© 2026 Wenjing Ding · Train in Motion · Built with calm and patience"
-      },
+    
 
       "en-CA": {
         "brand.community": "Community",
@@ -1673,7 +1505,7 @@
         // Update search placeholder (nice touch)
         const search = document.getElementById("siteSearch");
         if(search){
-          const ph = (lang === "en-CA") ? "Search" : (lang === "zh-TW" ? "搜尋" : "搜索");
+          const ph = (lang === "en-CA") ? "Search" : (lang === "zh-CN" ? "搜索");
           search.placeholder = ph;
         }
       }
@@ -1682,7 +1514,6 @@
       const initial = stored || (navigator.language || "zh-CN");
       // normalize only to our 3 options
       const normalized =
-        initial.startsWith("zh-TW") || initial.startsWith("zh-HK") ? "zh-TW" :
         initial.startsWith("en") ? "en-CA" :
         "zh-CN";
 
